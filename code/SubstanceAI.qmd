@@ -1,0 +1,68 @@
+---
+title: "Substance Use in American Indian Youth"
+author: "Xiaoqi Ma, Avery Turner, Audrey Sileci, & Tracy Zehner"
+format: html
+editor: visual
+bibliography: references.bib
+---
+
+# *Introduction*
+
+## *The Present Study*
+
+Our research questions were the following: (1) Do students with higher reported parental monitoring use substances at lower rates? (2) Do AI students have lower reported parental monitoring compared to non-AI students?
+
+# *Methods*
+
+## *Participants*
+
+## *Variables of Interest*
+
+### *Independent Variables*
+
+### *Dependent Variables*
+
+### *Covariates*
+
+## *Analytic Approach*
+
+To answer the first research question, we fit a linear model demonstrating the relation between parental monitoring and substance use using ordinary least squares (OLS) regression in R Version 2023.03.1+446 [@Rcitation]. The packages used for analysis were Tidyverse [@tidy], here [@here], rio [@Chan2018-cy], ggplot2 [@ggplot], and janitor [@janitor].
+
+```{r}
+#| execute:
+#| echo: false
+citation()
+citation("janitor")
+
+library(tidyverse)
+library(rio)
+library(here)
+library(janitor)
+library(ggplot2)
+
+sub <- import(here("data", "37997-0001-Data.rda"))%>%
+  clean_names() %>% 
+  characterize()
+```
+
+# *Results*
+
+## *Descriptive Statistics*
+
+```{r}
+
+```
+
+
+## *Parental Monitoring and Substance Use*
+```{r}
+#| echo: false
+2 * 2
+```
+
+## *AI Students and Parental Monitoring*
+```{r}
+
+```
+
+# *Discussion*
