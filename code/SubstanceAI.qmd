@@ -37,7 +37,7 @@ Our research questions were the following: (1) Do students with higher reported 
 
 ## Analytic Approach
 
-To answer the first research question, we fit a linear model demonstrating the relation between parental monitoring and substance use using ordinary least squares (OLS) regression in R Version 2023.03.1+446 [@Rcitation]. The packages used for analysis were Tidyverse [@tidy], here [@here], rio [@Chan2018-cy], ggplot2 [@ggplot], and janitor [@janitor].
+To answer the first research question, we fit a linear model demonstrating the relation between parental monitoring and substance use using ordinary least squares (OLS) regression in R Version 2023.03.1+446 [@Rcitation]. The packages used for analysis were Tidyverse [@tidy], here [@here], rio [@Chan2018-cy], ggplot2 [@ggplot], missMethods[@missMethods], modelsummary [@modelsummary] and janitor [@janitor].
 
 ```{r}
 
@@ -46,10 +46,14 @@ library(rio)
 library(here)
 library(janitor)
 library(ggplot2)
+library(missMethods)
+library(modelsummary)
 
 sub <- import(here("data", "37997-0001-Data.rda"))%>%
   clean_names() %>% 
   characterize()
+
+str(sub)
 ```
 
 # Results
@@ -58,20 +62,55 @@ sub <- import(here("data", "37997-0001-Data.rda"))%>%
 
 ```{r}
 
-#Parental monitoring should include all variables that start with b109, including b109_1, b109_2, b109_3, b109_4, b109_5, b109_6, b109_7, b109_8, b109_9
+#Parental monitoring should include all variables that start with b109, including b109_1 (I tell my parents how I'm doing in school), b109_2 (I have to tell my parents who I'm with and what I'm doing at night with friends), b109_3 (My parents ask what I do in my free time), b109_4 (I tell my parents about my activities with friends), b109_5 (I have to tell my parents my plans for weekend nights), b109_6 (My parents ask about things that happen at school), b109_7 (I keep secrets from my parents about what I do in my free time), b109_8 (I need permission to be out late on weeknights), b109_9 (My parents talk to my friends)
+
+#scaling: all questions above are scaled 1-5 (1=never, 2=rarely, 3= sometimes, 4=most of the time, 5= always)
+
+View(sub)
 ```
 
 ## Parental Monitoring and Substance Use
 
 ```{r}
 #| echo: false
-2 * 2
+#need to reverse code b109_7
+
+#getting rid of missing values and unnecessary columns
+
+RQ1 <- na.omit(sub %>%
+                 select(b109_1, b109_2, b109_3, b109_4, b109_5, b109_6, b109_7, b109_8, b109_9, q2, q11) %>%
+                 summarize(Parent_mon= b109_1 + b109_2+ b109_3 + b109_4 + b109_5 + b109_6 + b109_7 + b109_8 + b109_9))
+
+
+##Tobacco use Q11 Have you EVER smoked CIGARETTES? (1=never, 2=once or twice, 3=occasionally but not regularly, 4=Regularly in the past, 5=regularly now)
+
+RQ1 <- RQ1 %>% rename(ever_smoked = q11, age = q2)
+
+#check which age has the least missingness on our parental monitoring and tobacco use
+Only15yos <- RQ1 %>% filter (age==15)
+missMethods::count(Only15yos$Parent_mon)
+missMethods::count_NA(Only15yos$ever_smoked)
+Only16yos <- RQ1 %>% filter (age==16)
+missMethods::count_NA(Only16yos$Parent_mon)
+missMethods::count_NA(Only16yos$ever_smoked)
+Only17yos <- RQ1 %>% filter (age==17)
+missMethods::count_NA(Only17yos$Parent_mon)
+missMethods::count_NA(Only17yos$ever_smoked)
+Only18yos <- RQ1 %>% filter (age==18)
+missMethods::count_NA(Only18yos$Parent_mon)
+missMethods::count_NA(Only18yos$ever_smoked)
+
+#descriptives
+
+#modeling the relationship
+RQ1model <- lm(ever_smoked ~ Parent_mon, data=Only15yos)
+modelsummary(RQ1model)
 ```
 
 ## AI Students and Parental Monitoring
 
 ```{r}
-
+#need to filter by q4_3 (Are you AI?) and q4_5 (Are you AN?) where 1=yes
 ```
 
 # Discussion
