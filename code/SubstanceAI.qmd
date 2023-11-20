@@ -11,9 +11,9 @@ execute:
 bibliography: references.bib
 ---
 
-# Abstract
-American Indians (AI) and Alaska Natives (AN) report greater cigarette use than all other racial/ethnic groups and subgroups in the U.S. [@Martell2016]. Tobacco use is a major cause of cardiovascular disease (Centers for Disease Control and Prevention, ). In fact, cardiovascular disease and lung cancer are leading causes of death among people who identify as American Indian   [@centersfordiseasecontrolandprevention2022]. While past research posits that high rates of tobacco use in AI/AN youth may be due to tobacco companies targeting marginalized groups (FDA, 2023), less is known about how parental monitoring contributes to tobacco use. The purpose of this study was to examine the extent to which parental monitoring predicted tobacco usage and if (AI youth have lower reported parental monitoring) *-- are we able to answer this?*. We hypothesized that higher reported parental monitoring was related to lower tobacco usage rates, on average, in a population of AI and AN adolescents. Data came from the publicly available Substance Use Among American Indian Youth dataset (N =__, __% female, Mage = __ years). We found that parental monitoring__.
+# Abstract 
 
+American Indians (AI) report greater cigarette use than all other racial/ethnic groups and subgroups in the U.S. [@Martell2016]. Tobacco use is a major cause of cardiovascular disease (Centers for Disease Control and Prevention, ). In fact, cardiovascular disease and lung cancer are leading causes of death among people who identify as American Indian [@centersfordiseasecontrolandprevention2022]. While past research posits that high rates of tobacco use in AI/AN youth may be due to tobacco companies targeting marginalized groups (FDA, 2023), less is known about how parental monitoring contributes to tobacco use. The purpose of this study was to examine the extent to which parental monitoring predicted tobacco usage and if (AI youth have lower reported parental monitoring) *-- are we able to answer this?*. We hypothesized that higher reported parental monitoring was related to lower tobacco usage rates, on average, in a population of AI and AN adolescents. Data came from the publicly available Substance Use Among American Indian Youth dataset (N =**,** % female, Mage = \_\_ years). We found that parental monitoring\_\_.
 
 # Introduction
 
@@ -25,9 +25,11 @@ Parental monitoring -- parenting behaviors including attention to where children
 
 ## The Present Study
 
-Our research questions were the following: (1) Do students with higher reported parental monitoring use substances at lower rates? (2) Do AI students have lower reported parental monitoring compared to non-AI students?
+Our research questions were the following: (1) Do AI students have lower reported parental monitoring compared to non-AI students? (2) Do AI students with higher reported parental monitoring use substances at lower rates?
 
-# Methods
+(Audrey - justify only AI)
+
+# Methods (Tracy)
 
 ## Participants
 
@@ -41,7 +43,7 @@ Our research questions were the following: (1) Do students with higher reported 
 
 ## Analytic Approach
 
-To answer the first research question, we fit a linear model demonstrating the relation between parental monitoring and substance use using ordinary least squares (OLS) regression in R Version 2023.03.1+446 [@Rcitation]. The packages used for analysis were Tidyverse [@tidy], here [@here], rio [@Chan2018-cy], ggplot2 [@ggplot], missMethods[@missMethods], modelsummary [@modelsummary] and janitor [@janitor].
+To answer the first research question, we used logistic regression ... in R Version 2023.03.1+446 [@Rcitation]. The packages used for analysis were Tidyverse [@tidy], here [@here], rio [@Chan2018-cy], ggplot2 [@ggplot], missMethods[@missMethods], modelsummary [@modelsummary], janitor [@janitor].
 
 ```{r}
 
@@ -55,8 +57,7 @@ library(modelsummary)
 library(dplyr)
 
 sub <- import(here("data", "37997-0001-Data.rda"))%>%
-  clean_names() %>% 
-  characterize()
+  clean_names() 
 
 str(sub)
 ```
@@ -73,9 +74,10 @@ str(sub)
 
 View(sub)
 
+#t-test for RQ1
 ```
 
-## Parental Monitoring and Substance Use
+## Parental Monitoring and Tobacco Use
 
 ```{r}
 #| echo: false
@@ -84,14 +86,10 @@ View(sub)
 #finding participant identifier
 length(unique(sub$enddate, sub$startdate, sub$q2, sub$q1, sub$q3)) 
 
-#getting rid of missing values and unnecessary columns
-RQ1 <- na.omit(sub %>%
-                 select(b109_1, b109_2, b109_3, b109_4, b109_5, b109_6, b109_7, b109_8, b109_9, q2, q11) %>%
-                 summarize(Parent_mon= b109_1 + b109_2+ b109_3 + b109_4 + b109_5 + b109_6 + b109_7 + b109_8 + b109_9))
-
 # TZ: only keep columns of interest (start and end dates will be used for grouping)
 R1 <- na.omit(sub %>%
         select(enddate, startdate, b109_1, b109_2, b109_3, b109_4, b109_5, b109_6, b109_7, b109_8, b109_9, q2, q11))
+ 
 
 # recode to get rid of text in levels; reverse code b109_7
 R1_clean <- R1 %>% 
@@ -141,40 +139,43 @@ R1_clean_num <- cbind(R1_clean, b109_1n, b109_2n, b109_3n, b109_4n, b109_5n, b10
 R1_clean_num <- R1_clean_num%>%
   group_by(startdate, enddate) %>%
   mutate(parent_mon_sum = sum(b109_1n, b109_2n, b109_3n, b109_4n, b109_5n, b109_6n, b109_7n, b109_8n, b109_9n))
-#where TZ stopped                             
+##need to standardize parental monitoring var
+## maybe use SUMMARIZE instead of mutate                        
                               
          
 ##Tobacco use Q11 Have you EVER smoked CIGARETTES? (1=never, 2=once or twice, 3=occasionally but not regularly, 4=Regularly in the past, 5=regularly now)
 
 #check which age has the least missingness on our parental monitoring and tobacco use
-RQ1 <- sub %>% rename(ever_smoked = q11, age = q2)
-head(RQ1)
+R1_clean_num <- R1_clean_num %>% rename(ever_smoked = q11, age = q2)
+head(R1_clean_num)
 
 
-Only15yos <- RQ1 %>% filter(age=="(15) 15")
-missMethods::count(Only15yos$Parent_mon)
-missMethods::count_NA(Only15yos$ever_smoked)
-Only16yos <- RQ1 %>% filter (age==16)
-missMethods::count_NA(Only16yos$Parent_mon)
-missMethods::count_NA(Only16yos$ever_smoked)
-Only17yos <- RQ1 %>% filter (age==17)
-missMethods::count_NA(Only17yos$Parent_mon)
-missMethods::count_NA(Only17yos$ever_smoked)
-Only18yos <- RQ1 %>% filter (age==18)
-missMethods::count_NA(Only18yos$Parent_mon)
-missMethods::count_NA(Only18yos$ever_smoked)
+Only15yos <- R1_clean_num %>% filter(age=="(15) 15")
+table(Only15yos$ever_smoked)
+#879
+#maybe filter AI & 15yo
 
-#descriptives
+#Only16yos <- R1_clean_num %>% filter (age=="(16) 16")
+#table(Only16yos$ever_smoked)
+#Only17yos <- R1_clean_num %>% filter (age=="(17) 17")
+#table(Only17yos$ever_smoked)
+#Only18yos <- R1_clean_num %>% filter (age=="(18) 18")
+#table(Only18yos$ever_smoked)
 
-#modeling the relationship
-RQ1model <- lm(ever_smoked ~ Parent_mon, data=Only15yos)
+#descriptives:_% of 15 yo have ever used cigarettes; parent_mon range and mean; n; sex; gender; race/ethn
+
+
+#modeling the relationship; filter ai/an
+RQ1model <- lm(ever_smoked ~ parent_mon_sum, data=Only15yos)
 modelsummary(RQ1model)
 ```
 
 ## AI Students and Parental Monitoring
 
 ```{r}
-#need to filter by q4_3 (Are you AI?) and q4_5 (Are you AN?) where 1=yes
+#need to filter by q4_3 (Are you AI?) where 1=yes
+
+
 ```
 
 # Discussion
