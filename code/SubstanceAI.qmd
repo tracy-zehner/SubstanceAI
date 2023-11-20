@@ -1,5 +1,5 @@
 ---
-title: "Substance Use in American Indian Youth"
+title: "Tobacco Use and Parental Monitoring among American Indian Youth"
 author: "Xiaoqi Ma, Avery Turner, Audrey Sileci, & Tracy Zehner"
 format: html
 editor: visual
@@ -12,6 +12,12 @@ bibliography: references.bib
 ---
 
 # Introduction
+
+People who identify as American Indian (AI) or Alaska Native (AN) report greater cigarette use than all other racial/ethnic groups and subgroups in the U.S. [@martell2016]. In 2022, middle and high-school students who identified as AI/AN were also more likely to report ever having used a tobacco product compared to all other racial/ethnic groups (13.5% of AI/AN compared to 13% who identify as multiracial, 12.4% who identify as white, 11.5% who identify as black, 11.1% who identify as Hispanic/Latinx, and 3.1% who identify as Asian; [@park-lee2022]). Nine out of ten U.S. smokers who report smoking at least daily tried their first cigarette before the age of 18 ***(see note below\*)***. Tobacco use can cause cardiovascular disease and lung cancer which, respectively, are the leading causes of death and cancer deaths among people who identify as AI [@centersfordiseasecontrolandprevention2022]. Identifying risk and protective factors of tobacco use among AI youth is a top priority given the racial disparity in youth smoking rates and the substantial health burden caused by tobacco use in this community.
+
+**\**This link is in Zotero, but won't appear here in R Studio for me: https://www.cdc.gov/tobacco/data_statistics/fact_sheets/youth_data/tobacco_use/index.htm***
+
+Parental monitoring -- parenting behaviors including attention to where children go and activities they engage in [@dishion1998] -- may be a protective factor for decreased substance use among AI youth [@boyd-ball2014; @haruyama2023; @schick2022]. Limited research has been conducted that examines this relation with a focus on tobacco use among AI youth. The challenges that AI parents face are unique. Specifically, traditional AI parenting practices were disrupted by colonization that led to children being separated from their families by forcibly attending boarding schools or being placed with White families, which has left a lasting impact on parental self-efficacy among AI parents [@braveheart1999; @walters2011]. Several support services and interventions are available that target parental monitoring [e.g., @dishion2003], and increasing evidence of parental monitoring and tobacco use among AI youth contributes to the understanding of the potential of these programs in this population.
 
 ## The Present Study
 
@@ -52,6 +58,7 @@ sub <- import(here("data", "37997-0001-Data.rda"))%>%
 
 ```{r}
 
+#Parental monitoring should include all variables that start with b109, including b109_1, b109_2, b109_3, b109_4, b109_5, b109_6, b109_7, b109_8, b109_9
 ```
 
 ## Parental Monitoring and Substance Use
