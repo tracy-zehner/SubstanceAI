@@ -11,9 +11,9 @@ execute:
 bibliography: references.bib
 ---
 
-# Abstract 
+# Abstract
 
-American Indians (AI) report greater cigarette use than all other racial/ethnic groups and subgroups in the U.S. [@Martell2016]. Tobacco use is a major cause of cardiovascular disease (Centers for Disease Control and Prevention, ). In fact, cardiovascular disease and lung cancer are leading causes of death among people who identify as American Indian [@centersfordiseasecontrolandprevention2022]. While past research posits that high rates of tobacco use in AI/AN youth may be due to tobacco companies targeting marginalized groups (FDA, 2023), less is known about how parental monitoring contributes to tobacco use. The purpose of this study was to examine the extent to which parental monitoring predicted tobacco usage and if (AI youth have lower reported parental monitoring) *-- are we able to answer this?*. We hypothesized that higher reported parental monitoring was related to lower tobacco usage rates, on average, in a population of AI and AN adolescents. Data came from the publicly available Substance Use Among American Indian Youth dataset (N =**,** % female, Mage = \_\_ years). We found that parental monitoring\_\_.
+American Indians (AI) and Alaska Natives (AN) report greater cigarette use than all other racial/ethnic groups and subgroups in the U.S. [@Martell2016]. Tobacco use is a major cause of cardiovascular disease (Centers for Disease Control and Prevention, ). In fact, cardiovascular disease and lung cancer are leading causes of death among people who identify as American Indian [@centersfordiseasecontrolandprevention2022]. While past research posits that high rates of tobacco use in AI/AN youth may be due to tobacco companies targeting marginalized groups (FDA, 2023), less is known about how parental monitoring contributes to tobacco use. The purpose of this study was to examine the extent to which parental monitoring predicted tobacco usage and if (AI youth have lower reported parental monitoring) *-- are we able to answer this?*. We hypothesized that higher reported parental monitoring was related to lower tobacco usage rates, on average, in a population of AI and AN adolescents. Data came from the publicly available Substance Use Among American Indian Youth dataset (N =**,** % female, Mage = \_\_ years). We found that parental monitoring\_\_.
 
 # Introduction
 
@@ -102,7 +102,9 @@ R1_clean <- R1 %>%
   mutate(b109_7=recode(b109_7, '(1) Never' = "5", '(2) Rarely' = "4", '(3) Sometimes' = "3", '(4) Most of the time' = "2", '(5) Always' = "1")) %>%
   mutate(b109_8=recode(b109_8,'(1) Never' = "1", '(2) Rarely' = "2", '(3) Sometimes' = "3", '(4) Most of the time' = "4", '(5) Always' = "5")) %>%
   mutate(b109_9=recode(b109_9, '(1) Never' = "1", '(2) Rarely' = "2", '(3) Sometimes' = "3", '(4) Most of the time' = "4", '(5) Always' = "5"))
-                       
+
+#XM: I thought the only reason we have text in the value is "characterize()" was used when importing data. we could delete that, or use "as.numeric()"?
+#XM: For example, I used "sub$b109_7 <- 6-(as.numeric(sub$b109_7))" to reverse code b109_7.
                        
 # Creating Factors and Converting Factor to numeric; reverse code b109_7
 b109_1 <- factor(R1_clean$b109_1, c(1, 2, 3, 4, 5))
