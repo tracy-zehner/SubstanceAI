@@ -11,6 +11,10 @@ execute:
 bibliography: references.bib
 ---
 
+# Abstract
+American Indians (AI) and Alaska Natives (AN) report greater cigarette use than all other racial/ethnic groups and subgroups in the U.S. [@Martell2016]. Tobacco use is a major cause of cardiovascular disease (Centers for Disease Control and Prevention, ). In fact, cardiovascular disease and lung cancer are leading causes of death among people who identify as American Indian   [@centersfordiseasecontrolandprevention2022]. While past research posits that high rates of tobacco use in AI/AN youth may be due to tobacco companies targeting marginalized groups (FDA, 2023), less is known about how parental monitoring contributes to tobacco use. The purpose of this study was to examine the extent to which parental monitoring predicted tobacco usage and if (AI youth have lower reported parental monitoring) *-- are we able to answer this?*. We hypothesized that higher reported parental monitoring was related to lower tobacco usage rates, on average, in a population of AI and AN adolescents. Data came from the publicly available Substance Use Among American Indian Youth dataset (N =__, __% female, Mage = __ years). We found that parental monitoring__.
+
+
 # Introduction
 
 People who identify as American Indian (AI) or Alaska Native (AN) report greater cigarette use than all other racial/ethnic groups and subgroups in the U.S. [@martell2016]. In 2022, middle and high-school students who identified as AI/AN were also more likely to report ever having used a tobacco product compared to all other racial/ethnic groups (13.5% of AI/AN compared to 13% who identify as multiracial, 12.4% who identify as white, 11.5% who identify as black, 11.1% who identify as Hispanic/Latinx, and 3.1% who identify as Asian; [@park-lee2022]). Nine out of ten U.S. smokers who report smoking at least daily tried their first cigarette before the age of 18 ***(see note below\*)***. Tobacco use can cause cardiovascular disease and lung cancer which, respectively, are the leading causes of death and cancer deaths among people who identify as AI [@centersfordiseasecontrolandprevention2022]. Identifying risk and protective factors of tobacco use among AI youth is a top priority given the racial disparity in youth smoking rates and the substantial health burden caused by tobacco use in this community.
@@ -48,6 +52,7 @@ library(janitor)
 library(ggplot2)
 library(missMethods)
 library(modelsummary)
+library(dplyr)
 
 sub <- import(here("data", "37997-0001-Data.rda"))%>%
   clean_names() %>% 
@@ -67,6 +72,7 @@ str(sub)
 #scaling: all questions above are scaled 1-5 (1=never, 2=rarely, 3= sometimes, 4=most of the time, 5= always)
 
 View(sub)
+
 ```
 
 ## Parental Monitoring and Substance Use
@@ -75,19 +81,77 @@ View(sub)
 #| echo: false
 #need to reverse code b109_7
 
-#getting rid of missing values and unnecessary columns
+#finding participant identifier
+length(unique(sub$enddate, sub$startdate, sub$q2, sub$q1, sub$q3)) 
 
+#getting rid of missing values and unnecessary columns
 RQ1 <- na.omit(sub %>%
                  select(b109_1, b109_2, b109_3, b109_4, b109_5, b109_6, b109_7, b109_8, b109_9, q2, q11) %>%
                  summarize(Parent_mon= b109_1 + b109_2+ b109_3 + b109_4 + b109_5 + b109_6 + b109_7 + b109_8 + b109_9))
 
+# TZ: only keep columns of interest (start and end dates will be used for grouping)
+R1 <- na.omit(sub %>%
+        select(enddate, startdate, b109_1, b109_2, b109_3, b109_4, b109_5, b109_6, b109_7, b109_8, b109_9, q2, q11))
 
+# recode to get rid of text in levels; reverse code b109_7
+R1_clean <- R1 %>% 
+  mutate(b109_1=recode(b109_1, '(1) Never' = "1", '(2) Rarely' = "2", '(3) Sometimes' = "3", '(4) Most of the time' = "4", '(5) Always' = "5")) %>%
+  mutate(b109_2=recode(b109_1, '(1) Never' = "1", '(2) Rarely' = "2", '(3) Sometimes' = "3", '(4) Most of the time' = "4", '(5) Always' = "5")) %>%
+  mutate(b109_3=recode(b109_3, '(1) Never' = "1", '(2) Rarely' = "2", '(3) Sometimes' = "3", '(4) Most of the time' = "4", '(5) Always' = "5")) %>%
+  mutate(b109_4=recode(b109_4, '(1) Never' = "1", '(2) Rarely' = "2", '(3) Sometimes' = "3", '(4) Most of the time' = "4", '(5) Always' = "5")) %>%
+  mutate(b109_5=recode(b109_5, '(1) Never' = "1", '(2) Rarely' = "2", '(3) Sometimes' = "3", '(4) Most of the time' = "4", '(5) Always' = "5")) %>%
+  mutate(b109_6=recode(b109_6,'(1) Never' = "1", '(2) Rarely' = "2", '(3) Sometimes' = "3", '(4) Most of the time' = "4", '(5) Always' = "5")) %>%
+  mutate(b109_7=recode(b109_7, '(1) Never' = "5", '(2) Rarely' = "4", '(3) Sometimes' = "3", '(4) Most of the time' = "2", '(5) Always' = "1")) %>%
+  mutate(b109_8=recode(b109_8,'(1) Never' = "1", '(2) Rarely' = "2", '(3) Sometimes' = "3", '(4) Most of the time' = "4", '(5) Always' = "5")) %>%
+  mutate(b109_9=recode(b109_9, '(1) Never' = "1", '(2) Rarely' = "2", '(3) Sometimes' = "3", '(4) Most of the time' = "4", '(5) Always' = "5"))
+                       
+                       
+# Creating Factors and Converting Factor to numeric; reverse code b109_7
+b109_1 <- factor(R1_clean$b109_1, c(1, 2, 3, 4, 5))
+b109_1n<-as.numeric(as.character(b109_1))
+
+b109_2 <- factor(R1_clean$b109_2, c(1, 2, 3, 4, 5))
+b109_2n<-as.numeric(as.character(b109_2))
+
+b109_3 <- factor(R1_clean$b109_3, c(1, 2, 3, 4, 5))
+b109_3n<-as.numeric(as.character(b109_3))
+
+b109_4 <- factor(R1_clean$b109_4, c(1, 2, 3, 4, 5))
+b109_4n<-as.numeric(as.character(b109_4))
+
+b109_5 <- factor(R1_clean$b109_5, c(1, 2, 3, 4, 5))
+b109_5n<-as.numeric(as.character(b109_5))
+
+b109_6 <- factor(R1_clean$b109_6, c(1, 2, 3, 4, 5))
+b109_6n<-as.numeric(as.character(b109_6))
+
+b109_7 <- factor(R1_clean$b109_7, c(5, 4, 3, 2, 1))
+b109_7n<-as.numeric(as.character(b109_7))
+
+b109_8 <- factor(R1_clean$b109_8, c(1, 2, 3, 4, 5))
+b109_8n<-as.numeric(as.character(b109_8))
+
+b109_9 <- factor(R1_clean$b109_9, c(1, 2, 3, 4, 5))
+b109_9n<-as.numeric(as.character(b109_9))
+
+# binding dataframe and numeric values which looks like: df_new <- cbind(df, new)
+R1_clean_num <- cbind(R1_clean, b109_1n, b109_2n, b109_3n, b109_4n, b109_5n, b109_6n, b109_7n, b109_8n, b109_9n)
+                       
+# create parent monitoring variable from the sum of b109_1:b109_9  (b109_7 was reverse coded) by participant
+R1_clean_num <- R1_clean_num%>%
+  group_by(startdate, enddate) %>%
+  mutate(parent_mon_sum = sum(b109_1n, b109_2n, b109_3n, b109_4n, b109_5n, b109_6n, b109_7n, b109_8n, b109_9n))
+#where TZ stopped                             
+                              
+         
 ##Tobacco use Q11 Have you EVER smoked CIGARETTES? (1=never, 2=once or twice, 3=occasionally but not regularly, 4=Regularly in the past, 5=regularly now)
 
-RQ1 <- RQ1 %>% rename(ever_smoked = q11, age = q2)
-
 #check which age has the least missingness on our parental monitoring and tobacco use
-Only15yos <- RQ1 %>% filter (age==15)
+RQ1 <- sub %>% rename(ever_smoked = q11, age = q2)
+head(RQ1)
+
+
+Only15yos <- RQ1 %>% filter(age=="(15) 15")
 missMethods::count(Only15yos$Parent_mon)
 missMethods::count_NA(Only15yos$ever_smoked)
 Only16yos <- RQ1 %>% filter (age==16)
