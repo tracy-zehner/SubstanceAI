@@ -27,11 +27,15 @@ Parental monitoring -- parenting behaviors including attention to where children
 
 Our research questions were the following: (1) Do AI students have lower reported parental monitoring compared to non-AI students? (2) Do AI students with higher reported parental monitoring use substances at lower rates?
 
-(Audrey - justify only AI)
+Although people who identify as AI and AN have similar needs and experiences, the populations are not interchangeable. The focus of this study was exclusively on AI youth.
 
 # Methods (Tracy)
 
 ## Participants
+
+Participants were AI adolescents in grades 7 and above attending school on or near (within 25 miles of) AI reservations or designated tribal lands across the U.S. Students were recruited through letters sent home to parents and through posts on local media sites.
+
+To identify participating schools, the following data sets were used: the NCES Common Core of Data (CCD), the NCES Private School Universe Survey (PPS), and the Bureau of Indian Education (BIE) National Directory. Only schools with at least 20% AI enrollment and total enrollment of at least 20 students were eligible, and eligible schools were randomly selected to participate.
 
 ## Variables of Interest
 
