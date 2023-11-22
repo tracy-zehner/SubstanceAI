@@ -13,7 +13,7 @@ bibliography: references.bib
 
 # Abstract
 
-American Indians (AI) and Alaska Natives (AN) report greater cigarette use than all other racial/ethnic groups and subgroups in the U.S. [@Martell2016]. Tobacco use is a major cause of cardiovascular disease (Centers for Disease Control and Prevention, ). In fact, cardiovascular disease and lung cancer are leading causes of death among people who identify as American Indian [@centersfordiseasecontrolandprevention2022]. While past research posits that high rates of tobacco use in AI/AN youth may be due to tobacco companies targeting marginalized groups (FDA, 2023), less is known about how parental monitoring contributes to tobacco use. The purpose of this study was to examine the extent to which parental monitoring predicted tobacco usage and if (AI youth have lower reported parental monitoring) *-- are we able to answer this?*. We hypothesized that higher reported parental monitoring was related to lower tobacco usage rates, on average, in a population of AI and AN adolescents. Data came from the publicly available Substance Use Among American Indian Youth dataset (N =**,** % female, Mage = \_\_ years). We found that parental monitoring\_\_.
+American Indians (AI) and Alaska Natives (AN) report greater cigarette use than all other racial/ethnic groups and subgroups in the U.S. [@martell2016]. Tobacco use is a major cause of cardiovascular disease [@centersfordiseasecontrolandprevention2022]. In fact, cardiovascular disease and lung cancer are leading causes of death among people who identify as American Indian [@centersfordiseasecontrolandprevention2022]. While past research posits that high rates of tobacco use in AI/AN youth may be due to culturally traditional use and tobacco companies targeting marginalized groups [@FDA2023], less is known about how parental monitoring contributes to tobacco use. The purpose of this study was to examine if AI youth have lower reported parental monitoring compared to non-AI youth and the extent to which parental monitoring predicted ever smoking cigarettes. We hypothesized that higher reported parental monitoring was related to lower tobacco usage rates, on average, in a population of AI and AN adolescents. Data came from the publicly available Substance Use Among American Indian Youth dataset (N = 847, 47% female). We found that AI youth had less parental monitoring compared to non-AI peers, and parental monitoring significantly predicted having ever smoked cigarettes. Findings suggest that parental monitoring is a protective factor for AI youth and it may help decrease tobacco usage in this population of youth.
 
 # Introduction
 
@@ -29,29 +29,31 @@ Our research questions were the following: (1) Do AI students have lower reporte
 
 Although people who identify as AI and AN have similar needs and experiences, the populations are not interchangeable. The focus of this study was exclusively on AI youth.
 
-# Methods (Tracy)
+# Methods
 
 ## Participants
 
-Participants were AI adolescents in grades 7 and above attending school on or near (within 25 miles of) AI reservations or designated tribal lands across the U.S. Students were recruited through letters sent home to parents and through posts on local media sites.
+Data came from the Substance Use Among American Indian Youth (2015-2020) data set [@AIdataset]. Participants were AI adolescents in grades 7 and above attending school on or near (within 25 miles of) AI reservations or designated tribal lands across the U.S. Students were recruited through letters sent home to parents and through posts on local media sites.
 
 To identify participating schools, the following data sets were used: the NCES Common Core of Data (CCD), the NCES Private School Universe Survey (PPS), and the Bureau of Indian Education (BIE) National Directory. Only schools with at least 20% AI enrollment and total enrollment of at least 20 students were eligible, and eligible schools were randomly selected to participate.
 
+## Procedure
+
+Participants completed the anonymous *Our Youth, Our Future* (OYOF) online survey using Qualtrics software. School staff was present, but remained in an area where student responses were not visible. Staff read survey directions and informed students that they could decline to participate or leave blank any questions they did not wish to answer. These instructions were repeated in the online survey.
+
 ## Variables of Interest
 
-because we use parental monitoring as both an outcome and a predictor variable, I think it makes more sense to just describe how each of these variables were collected/measured:
+For our first research question, we used self-reported AI identity of 15-year-old youth (not mutually exclusive with other races) as a predictor of parental monitoring level. For our second research question, we used parental monitoring level as a predictor of having ever smoked cigarettes for 15-year-old participants.
 
-age: selected 15y because we suspect that parental monitoring will be a stronger influence on child health outcomes when the youth still lives at home at does not have a driver's license yet. early but somewhat typical age to initiate tobacco use in this population
+We used a subset of the data to only analyze data of 15-year-old participants because we suspected that parental monitoring was a stronger influence on child health outcomes when the youth still lived at home and did not have a driver's license. This age is within typical age range to initiate tobacco use in this population of AI youth.
 
-identity as AI: not mutually exclusive with other races
+Parental monitoring is a constructed variable which comprises nine items from the OYOF regarding parental knowledge of their adolescent's activities and engagement in monitoring behaviors (e.g., *My parent ask about happenings at school*; *I need permission to be out late on weekends*). One item was reverse coded (i.e., *I keep secrets from my parents about what I do in my free time*). Parental monitoring level is the sum score of the nine items, which ranged from 9-45. In other words, higher sum scores means more parental monitoring for youths.
 
-parental monitoring: reverse coded one item so that higher score= more monitoring, scale ranged from 9-45, youth reported on their parent's monitoring
-
-smoking: ever smoked, regardless of amount/frequency smoked.
+The ever smoked variable was dichotomized for analysis. Participants answered one question about having ever smoked cigarettes. We chose to dichotomize this variable since participants in this subset were on the low end of the typical age range to initiate tobacco use.
 
 ## Analytic Approach
 
-To answer the first research question, we used logistic regression ... in R Version 2023.03.1+446 [@Rcitation]. The packages used for analysis were Tidyverse [@tidy], here [@here], rio [@Chan2018-cy], ggplot2 [@ggplot], missMethods[@missMethods], modelsummary [@modelsummary], janitor [@janitor].
+To answer the first research question, we ran a two-sample t-test in parental monitoring between AI and non-AI 15-year-old youths. To answer the second research question, we used logistic regression to examine the relation between parental monitoring and having ever smoked cigarettes. All analyses were completed using R Version 2023.03.1+446 [@Rcitation]. The packages used for analysis were Tidyverse [@tidy], here [@here], rio [@Chan2018-cy], ggplot2 [@ggplot], missMethods[@missMethods], modelsummary [@modelsummary], janitor [@janitor], gtsummary [@gtsummary], forcats [@forcats], and sandwich [@sandwich].
 
 ```{r}
 #| echo: false
@@ -66,11 +68,12 @@ library(dplyr)
 #library(mosaic)
 library(gtsummary)
 library(forcats)
+library(sandwich)
 
 sub <- import(here("data", "37997-0001-Data.rda"))%>%
   clean_names() 
 
-str(sub)
+#str(sub)
 ```
 
 # Results
@@ -82,13 +85,14 @@ str(sub)
 #need to reverse code b109_7
 
 #finding participant identifier
-length(unique(sub$enddate, sub$startdate, sub$q2, sub$q1, sub$q3)) 
+#length(unique(sub$enddate, sub$startdate, sub$q2, sub$q1, sub$q3)) 
 
 # XM: added q3 (sex) and q4_3 (AI)
 # TZ: only keep columns of interest (start and end dates will be used for grouping)
 R1 <- na.omit(sub %>%
         select(enddate, startdate, q3, q4_3, b109_1, b109_2, b109_3, b109_4, b109_5, b109_6, b109_7, b109_8, b109_9, q2, q11))
-str(R1)
+#str(R1)
+
 # recode to get rid of text in levels; reverse code b109_7
 R1_clean <- R1 %>% 
   mutate(b109_1=recode(b109_1, '(1) Never' = "1", '(2) Rarely' = "2", '(3) Sometimes' = "3", '(4) Most of the time' = "4", '(5) Always' = "5")) %>%
@@ -168,10 +172,9 @@ R1_clean_num <- R1_clean_num %>%
 
 
 Only15yos <- R1_clean_num %>% filter(age=="(15) 15")
-head(Only15yos)
-table(Only15yos$ever_smoked)
-#879
-#Filtered 15yo
+#head(Only15yos)
+#table(Only15yos$ever_smoked)
+#table(Only15yos$sex)
 
 #Only16yos <- R1_clean_num %>% filter (age=="(16) 16")
 #table(Only16yos$ever_smoked)
@@ -194,14 +197,15 @@ table(Only15yos$ever_smoked)
 
 #need to add labels to sex (relevel?), 1= male, 2=female, the code below isn't doing what I want, but it's something I've tried
 
+desg <- Only15yos %>% select(sex, ever_smoked, AI, parent_mon_sum)
+
+
 desg %>% mutate(
   sex=fct_recode(as.factor(sex),
                  Male = "1",
                  Female = "2")
 )
 
-desg <- Only15yos %>% select(sex, ever_smoked, AI, parent_mon_sum)
-str(desg)
 #get rid of grouping variables
 des <- desg[,3:6]
 des %>% 
@@ -216,12 +220,12 @@ des %>%
     parent_mon_sum ~ "Parental Monitoring"
    )) %>% modify_caption("**Table 1. Descriptive Statistics**")
 
-range(desg$parent_mon_sum)
+#range(desg$parent_mon_sum)
 mean_monitoring <-mean(desg$parent_mon_sum)
 
 ```
 
-Of the 15 year olds included in this sample (N= 847), 27% reported ever having smoked a cigarette. The majority of the students in this sample self-identified as AI (66%). Most students self reported relatively high levels of parental monitoring (M= `r mean_monitoring)` on the parental monitoring scale, which ranged in possible values from 9-45, with higher scores indicating more monitoring. 53% of our sample identified as male and 47% identified as female, indicating a relatively equal breakdown by sex.
+Of the 15 year olds included in this sample (N= 847), 27% reported ever having smoked a cigarette. The majority of the students in this sample self-identified as AI (66%). Most students self reported relatively high levels of parental monitoring (M= `r mean_monitoring` on the parental monitoring scale, which ranged in possible values from 9-45, with higher scores indicating more monitoring. 53% of our sample identified as male and 47% identified as female, indicating a relatively equal breakdown by sex.
 
 ## AI Students and Parental Monitoring
 
@@ -260,8 +264,8 @@ Independent two-sample t-test in parental monitoring between AI and non-AI 15-ye
 Only15yosAI <- R1_clean_num %>% filter(age=="(15) 15"& AI=="1")
 #modeling the relationship; filtered 15 yo ai/an
 RQ2model <- glm(ever_smoked ~ scale(parent_mon_sum), data=Only15yosAI, family=binomial(link="logit"))
-summary(RQ2model)
-str(RQ2model)
+#summary(RQ2model)
+#str(RQ2model)
 modelsummary(RQ2model,
              exponentiate = TRUE,
              gof_omit = "Log.Lik.|F|RMSE",
