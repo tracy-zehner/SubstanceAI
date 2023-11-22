@@ -220,10 +220,21 @@ desg_w <- desg %>%
     values_from = parent_mon_sum,
     names_glue = "AI_{AI}"
   )
-t.test(desg_w$AI_0,desg_w$AI_1)
-boxplot(desg_w$AI_0,desg_w$AI_1, ylab = "Parental Monitoring", names=c("Non AI","AI"))
+str(t.test(desg_w$AI_0,desg_w$AI_1))
+t.value <- t.test(desg_w$AI_0,desg_w$AI_1)$statistic[["t"]]
+df <- t.test(desg_w$AI_0,desg_w$AI_1)$parameter
+p.value <- t.test(desg_w$AI_0,desg_w$AI_1)$p.value
+mean1 <- t.test(desg_w$AI_0,desg_w$AI_1)$estimate[1]
+mean2 <- t.test(desg_w$AI_0,desg_w$AI_1)$estimate[2]
+# extracted statistics for in-text code
 
+#visualization
+ggplot(des,aes(x=factor(AI),y=parent_mon_sum))+geom_boxplot()+labs(x="AI", y="Parental Monitoring", title = "Figure 1. Boxplot of Parental Monitoring in AI and Non-AI 15-Year-Old Youths")
+#boxplot(desg_w$AI_0,desg_w$AI_1, ylab = "Parental Monitoring", names=c("Non AI","AI"))
+#Alternative way to generate boxplot but title is not there
 ```
+
+Independent two-sample t-test in parental monitoring between AI and non-AI 15-year-old youths showed that AI youths reported significantly lower parental monitoring than non-AI youths.
 
 ## Parental Monitoring and Tobacco Use in AI Youths
 
@@ -234,7 +245,7 @@ Only15yosAI <- R1_clean_num %>% filter(age=="(15) 15"& AI=="1")
 #modeling the relationship; filtered 15 yo ai/an
 RQ2model <- glm(ever_smoked ~ scale(parent_mon_sum), data=Only15yosAI, family=binomial(link="logit"))
 summary(RQ2model)
-
+str(RQ2model)
 #visualizing
 #visRQ2 <- Only15yos %>% mutate(prob = ifelse(ever_smoked == "1", 1, 0))
 #ggplot(visRQ1, aes(parent_mon_sum, prob)) +
@@ -247,7 +258,7 @@ summary(RQ2model)
 ggplot(Only15yosAI, aes(parent_mon_sum, ever_smoked)) +
   geom_point(alpha = 0.15) +
   geom_smooth(method = "glm", method.args = list(family = "binomial")) +
-  ggtitle("RQ1") +
+  ggtitle("Figure 2. Scatter plot of Parental Monitoring and Ever Smoked Report in AI 15-Year-Old Youths") +
   xlab("Parent monitoring") +
   ylab("Ever smoked")
 #effect_plot(RQ1model, pred = ever_smoked, interval = TRUE, y.label = "ever_smoked") This function would help plot predictions, it should be in the ggplot2 package but couldn't find the fuction? XM left the comment here in case anyone knows the solution
