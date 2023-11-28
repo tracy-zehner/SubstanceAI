@@ -21,6 +21,8 @@ People who identify as American Indian (AI) or Alaska Native (AN) report greater
 
 Parental monitoring -- parenting behaviors including attention to where children go and activities they engage in [@dishion1998] -- may be a protective factor for decreased substance use among AI youth [@boyd-ball2014; @haruyama2023; @schick2022]. Limited research has been conducted that examines this relation with a focus on tobacco use among AI youth. The challenges that AI parents face are unique. Specifically, traditional AI parenting practices were disrupted by colonization that led to children being separated from their families by forcibly attending boarding schools or being placed with White families, which has left a lasting impact on parental self-efficacy among AI parents [@braveheart1999; @walters2011]. Several support services and interventions are available that target parental monitoring [e.g., @dishion2003], and increasing evidence of parental monitoring and tobacco use among AI youth contributes to the understanding of the potential of these programs in this population.
 
+Comment from reviewer: You did a great job setting the context and the importance/practical implication of your research question. Very clear and succinct introduction. Nice work!!
+
 ## The Present Study
 
 Our research questions were the following: (1) Do AI students have lower reported parental monitoring compared to non-AI students? (2) Do AI students with higher reported parental monitoring use substances at lower rates?
@@ -183,6 +185,8 @@ Only15yos <- R1_clean_num %>% filter(age=="(15) 15")
 
 ```
 
+comment from reviewer: nice job with the data cleaning, I can tell that took a lot of work! This is a big strength in your draft.
+
 ## Descriptive Statistics
 
 ```{r}
@@ -204,6 +208,8 @@ desg %>% mutate(
                  Female = "2")
 )
 
+#comment from peer reviewer: I got an error message for this part of your code chunk. Not sure if that's a me problem, or an issue with your code, just a heads up.
+
 #get rid of grouping variables
 des <- desg[,3:6]
 des %>% 
@@ -220,6 +226,8 @@ des %>%
 
 #range(desg$parent_mon_sum)
 mean_monitoring <-mean(desg$parent_mon_sum)
+
+#comment from reviewer: it would be good to present these in a nice table. consider using the functions we used in homework 10.
 
 ```
 
@@ -246,6 +254,8 @@ mean1 <- t.test(desg_w$AI_0,desg_w$AI_1)$estimate[1]
 mean2 <- t.test(desg_w$AI_0,desg_w$AI_1)$estimate[2]
 # extracted statistics for in-text code
 
+#comment from peer reviewer: it would be helpful to include a description of the boxplot figure pointing out what the AI codes mean and pointing out the major trend you want to draw the readers attention to.
+
 #visualization
 ggplot(des,aes(x=factor(AI),y=parent_mon_sum))+geom_boxplot()+labs(x="AI", y="Parental Monitoring", title = "Figure 1. Boxplot of Parental Monitoring in AI and Non-AI 15-Year-Old Youths")
 #boxplot(desg_w$AI_0,desg_w$AI_1, ylab = "Parental Monitoring", names=c("Non AI","AI"))
@@ -253,6 +263,8 @@ ggplot(des,aes(x=factor(AI),y=parent_mon_sum))+geom_boxplot()+labs(x="AI", y="Pa
 ```
 
 Independent two-sample t-test in parental monitoring between AI and non-AI 15-year-old youths showed that AI youths reported significantly lower parental monitoring than non-AI youths (M1= `r mean2`, M2= `r mean1`, `r t.value`, df= `r df`, p= `r p.value`).
+
+Comment from reviewer: nice job including a box plot. I think this is the best way to visualize continuous + categorical data!
 
 ## Parental Monitoring and Tobacco Use in AI Youths
 
@@ -286,9 +298,12 @@ ggplot(Only15yosAI, aes(parent_mon_sum, ever_smoked)) +
   xlab("Parent monitoring") +
   ylab("Ever smoked")
 #effect_plot(RQ1model, pred = ever_smoked, interval = TRUE, y.label = "ever_smoked") This function would help plot predictions, it should be in the ggplot2 package but couldn't find the fuction? XM left the comment here in case anyone knows the solution
+
 ```
 
 A logistic regression model revealed that for each point increase in parental monitoring, AI youth in this sample were, on average, about 30% less likely to have initiated smoking tobacco by age 15 (B= 0.70, 95%CI\[0.59, 0.842\], p\<.001).
+
+Comment from reviewer: I think it's a great idea to include a figure for the regression/model (so this is a strength in your draft), however since you are dealing with one categorical and one continuous variable, it might make more sense to present this as a series of box plots. This might help: https://stats.stackexchange.com/questions/186027/how-to-visualize-make-plot-of-regression-output-against-categorical-input-vari
 
 # Discussion
 
@@ -297,3 +312,5 @@ We found that AI youth tended to self-report less parental monitoring than their
 The current analysis has the advantage of using a national dataset with a relatively large sample size. We looked only at 15 year olds in this sample to eliminate the mediating effect of age on the relationship between parental monitoring and tobacco use. This analysis does not generalize to the entirety of the AI population in the US, however, because only AI youth who lived within 25 miles of a reservation were recruited to participate in this study. Our measure of parental monitoring was reported by youth and may not reflect the reality of the youth's parent's monitoring, especially if the youth is not fully aware of the ways that their parent monitors their behavior. Because parental monitoring was summed, this analysis is not sensitive to the different impact that certain types of monitoring may have relative to others (i.e. all questions pertaining to monitoring were given equal weight and no analyses were conducted to assess which types of monitoring most accurately predict tobacco initiation). Finally, this analysis did not measure levels of tobacco use because smoking was simply coded as yes or no, so we cannot make claims about the effect of parental monitoring on the frequency or quantity of tobacco use in AI youth.
 
 # References
+
+Final comment from reviewer Ania: Overall, I think you did a great job with presenting your research question, the significance, and the results. I learned that AI youth report less parental monitoring and that increased parental monitoring is associated with lower odds of initiating tobacco use in your AI youth sample. I think this finding is significant when it comes to implementing interventions to target tobacco use in AI youth. Overall, I think this is a really strong draft! I left several in-line comments with strengths and improvements. My comments for improvement were mainly surrounding your visualizations/tables.
