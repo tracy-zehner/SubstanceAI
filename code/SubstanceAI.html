@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.475">
+<meta name="generator" content="quarto-1.3.433">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -18,14 +18,15 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for citations */
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
 }
-.hanging div.csl-entry {
+.hanging-indent div.csl-entry {
   margin-left:2em;
   text-indent:-2em;
 }
@@ -39,8 +40,7 @@ div.csl-right-inline {
 }
 div.csl-indent {
   margin-left: 2em;
-}
-</style>
+}</style>
 
 
 <script src="SubstanceAI_files/libs/clipboard/clipboard.min.js"></script>
@@ -53,6 +53,9 @@ div.csl-indent {
 <script src="SubstanceAI_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="SubstanceAI_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="SubstanceAI_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+<script src="SubstanceAI_files/libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="SubstanceAI_files/libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 
 
 </head>
@@ -88,12 +91,11 @@ div.csl-indent {
 
 <section id="abstract" class="level1">
 <h1>Abstract</h1>
-<p>American Indians (AI) and Alaska Natives (AN) report greater cigarette use than all other racial/ethnic groups and subgroups in the U.S. <span class="citation" data-cites="martell2016">(<a href="#ref-martell2016" role="doc-biblioref">Martell, Garrett, and Caraballo 2016</a>)</span>. Tobacco use is a major cause of cardiovascular disease <span class="citation" data-cites="centersfordiseasecontrolandprevention2022">(<a href="#ref-centersfordiseasecontrolandprevention2022" role="doc-biblioref">Disease Control and Prevention 2022</a>)</span>. In fact, cardiovascular disease and lung cancer are leading causes of death among people who identify as American Indian <span class="citation" data-cites="centersfordiseasecontrolandprevention2022">(<a href="#ref-centersfordiseasecontrolandprevention2022" role="doc-biblioref">Disease Control and Prevention 2022</a>)</span>. While past research posits that high rates of tobacco use in AI/AN youth may be due to culturally traditional use and tobacco companies targeting marginalized groups <span class="citation" data-cites="FDA2023">(<a href="#ref-FDA2023" role="doc-biblioref">Food and Administration 2023</a>)</span>, less is known about how parental monitoring contributes to tobacco use. The purpose of this study was to examine if AI youth have lower reported parental monitoring compared to non-AI youth and the extent to which parental monitoring predicted ever smoking cigarettes. We hypothesized that higher reported parental monitoring was related to lower tobacco usage rates, on average, in a population of AI and AN adolescents. Data came from the publicly available Substance Use Among American Indian Youth dataset (N = 847, 47% female). We found that AI youth had less parental monitoring compared to non-AI peers, and parental monitoring significantly predicted having ever smoked cigarettes. Findings suggest that parental monitoring is a protective factor for AI youth and it may help decrease tobacco usage in this population of youth.</p>
+<p>American Indians (AI) and Alaska Natives (AN) report greater cigarette use than all other racial/ethnic groups and subgroups in the U.S. <span class="citation" data-cites="martell2016">(<a href="#ref-martell2016" role="doc-biblioref">Martell, Garrett, and Caraballo 2016</a>)</span>. Tobacco use is a major cause of cardiovascular disease <span class="citation" data-cites="centersfordiseasecontrolandprevention2022">(<a href="#ref-centersfordiseasecontrolandprevention2022" role="doc-biblioref">Centers for Disease Control and Prevention 2022</a>)</span>. In fact, cardiovascular disease and lung cancer are leading causes of death among people who identify as American Indian <span class="citation" data-cites="centersfordiseasecontrolandprevention2022">(<a href="#ref-centersfordiseasecontrolandprevention2022" role="doc-biblioref">Centers for Disease Control and Prevention 2022</a>)</span>. While past research posits that high rates of tobacco use in AI/AN youth may be due to culturally traditional use and tobacco companies targeting marginalized groups <span class="citation" data-cites="FDA2023">(<a href="#ref-FDA2023" role="doc-biblioref">Food and Administration 2023</a>)</span>, less is known about how parental monitoring contributes to tobacco use. The purpose of this study was to examine if AI youth have lower reported parental monitoring compared to non-AI youth and the extent to which parental monitoring predicted ever smoking cigarettes. We hypothesized that higher reported parental monitoring was related to lower tobacco usage rates, on average, in a population of AI and AN adolescents. Data came from the publicly available Substance Use Among American Indian Youth dataset (N = 847, 47% female). We found that AI youth had less parental monitoring compared to non-AI peers, and parental monitoring significantly predicted having ever smoked cigarettes. Findings suggest that parental monitoring is a protective factor for AI youth and it may help decrease tobacco usage in this population of youth.</p>
 </section>
 <section id="introduction" class="level1">
 <h1>Introduction</h1>
-<p>People who identify as American Indian (AI) or Alaska Native (AN) report greater cigarette use than all other racial/ethnic groups and subgroups in the U.S. <span class="citation" data-cites="martell2016">(<a href="#ref-martell2016" role="doc-biblioref">Martell, Garrett, and Caraballo 2016</a>)</span>. In 2022, middle and high-school students who identified as AI/AN were also more likely to report ever having used a tobacco product compared to all other racial/ethnic groups (13.5% of AI/AN compared to 13% who identify as multiracial, 12.4% who identify as white, 11.5% who identify as black, 11.1% who identify as Hispanic/Latinx, and 3.1% who identify as Asian; <span class="citation" data-cites="park-lee2022">(<a href="#ref-park-lee2022" role="doc-biblioref">Park-Lee et al. 2022</a>)</span>). Nine out of ten U.S. smokers who report smoking at least daily tried their first cigarette before the age of 18 <strong><em>(see note below*)</em></strong>. Tobacco use can cause cardiovascular disease and lung cancer which, respectively, are the leading causes of death and cancer deaths among people who identify as AI <span class="citation" data-cites="centersfordiseasecontrolandprevention2022">(<a href="#ref-centersfordiseasecontrolandprevention2022" role="doc-biblioref">Disease Control and Prevention 2022</a>)</span>. Identifying risk and protective factors of tobacco use among AI youth is a top priority given the racial disparity in youth smoking rates and the substantial health burden caused by tobacco use in this community.</p>
-<p><strong>*<em>This link is in Zotero, but won’t appear here in R Studio for me: https://www.cdc.gov/tobacco/data_statistics/fact_sheets/youth_data/tobacco_use/index.htm</em></strong></p>
+<p>People who identify as American Indian (AI) or Alaska Native (AN) report greater cigarette use than all other racial/ethnic groups and subgroups in the U.S. <span class="citation" data-cites="martell2016">(<a href="#ref-martell2016" role="doc-biblioref">Martell, Garrett, and Caraballo 2016</a>)</span>. In 2022, middle and high-school students who identified as AI/AN were also more likely to report ever having used a tobacco product compared to all other racial/ethnic groups (13.5% of AI/AN compared to 13% who identify as multiracial, 12.4% who identify as white, 11.5% who identify as black, 11.1% who identify as Hispanic/Latinx, and 3.1% who identify as Asian; <span class="citation" data-cites="park-lee2022">(<a href="#ref-park-lee2022" role="doc-biblioref">Park-Lee et al. 2022</a>)</span>). Nine out of ten U.S. smokers who report smoking at least daily tried their first cigarette before the age of 18 <span class="citation" data-cites="cdc2022">(<a href="#ref-cdc2022" role="doc-biblioref">Center for Disease Control and [CDC] 2022</a>)</span>. Tobacco use can cause cardiovascular disease and lung cancer which, respectively, are the leading causes of death and cancer deaths among people who identify as AI <span class="citation" data-cites="centersfordiseasecontrolandprevention2022">(<a href="#ref-centersfordiseasecontrolandprevention2022" role="doc-biblioref">Centers for Disease Control and Prevention 2022</a>)</span>. Identifying risk and protective factors of tobacco use among AI youth is a top priority given the racial disparity in youth smoking rates and the substantial health burden caused by tobacco use in this community.</p>
 <p>Parental monitoring – parenting behaviors including attention to where children go and activities they engage in <span class="citation" data-cites="dishion1998">(<a href="#ref-dishion1998" role="doc-biblioref">Dishion and McMahon 1998</a>)</span> – may be a protective factor for decreased substance use among AI youth <span class="citation" data-cites="boyd-ball2014 haruyama2023 schick2022">(<a href="#ref-boyd-ball2014" role="doc-biblioref">Boyd-Ball et al. 2014</a>; <a href="#ref-haruyama2023" role="doc-biblioref">Haruyama et al. 2023</a>; <a href="#ref-schick2022" role="doc-biblioref">Schick et al. 2022</a>)</span>. Limited research has been conducted that examines this relation with a focus on tobacco use among AI youth. The challenges that AI parents face are unique. Specifically, traditional AI parenting practices were disrupted by colonization that led to children being separated from their families by forcibly attending boarding schools or being placed with White families, which has left a lasting impact on parental self-efficacy among AI parents <span class="citation" data-cites="braveheart1999 walters2011">(<a href="#ref-braveheart1999" role="doc-biblioref">Brave Heart 1999</a>; <a href="#ref-walters2011" role="doc-biblioref">Walters et al. 2011</a>)</span>. Several support services and interventions are available that target parental monitoring <span class="citation" data-cites="dishion2003">(e.g., <a href="#ref-dishion2003" role="doc-biblioref">Dishion, Nelson, and Kavanagh 2003</a>)</span>, and increasing evidence of parental monitoring and tobacco use among AI youth contributes to the understanding of the potential of these programs in this population.</p>
 <section id="the-present-study" class="level2">
 <h2 class="anchored" data-anchor-id="the-present-study">The Present Study</h2>
@@ -121,19 +123,13 @@ div.csl-indent {
 </section>
 <section id="analytic-approach" class="level2">
 <h2 class="anchored" data-anchor-id="analytic-approach">Analytic Approach</h2>
-<p>To answer the first research question, we ran a two-sample t-test in parental monitoring between AI and non-AI 15-year-old youths. To answer the second research question, we used logistic regression to examine the relation between parental monitoring and having ever smoked cigarettes. All analyses were completed using R Version 2023.03.1+446 <span class="citation" data-cites="Rcitation">(<a href="#ref-Rcitation" role="doc-biblioref">R Core Team 2023</a>)</span>. The packages used for analysis were Tidyverse <span class="citation" data-cites="tidy">(<a href="#ref-tidy" role="doc-biblioref">Wickham et al. 2019</a>)</span>, here <span class="citation" data-cites="here">(<a href="#ref-here" role="doc-biblioref">Müller 2020</a>)</span>, rio <span class="citation" data-cites="Chan2018-cy">(<a href="#ref-Chan2018-cy" role="doc-biblioref">Chan et al. 2018</a>)</span>, ggplot2 <span class="citation" data-cites="ggplot">(<a href="#ref-ggplot" role="doc-biblioref">Wickham 2016</a>)</span>, missMethods<span class="citation" data-cites="missMethods">(<a href="#ref-missMethods" role="doc-biblioref"><strong>missMethods?</strong></a>)</span>, modelsummary <span class="citation" data-cites="modelsummary">(<a href="#ref-modelsummary" role="doc-biblioref">Arel-Bundock 2022</a>)</span>, janitor <span class="citation" data-cites="janitor">(<a href="#ref-janitor" role="doc-biblioref">Firke 2023</a>)</span>, gtsummary <span class="citation" data-cites="gtsummary">(<a href="#ref-gtsummary" role="doc-biblioref">Sjoberg et al. 2021</a>)</span>, forcats <span class="citation" data-cites="forcats">(<a href="#ref-forcats" role="doc-biblioref">Wickham 2023</a>)</span>, and sandwich <span class="citation" data-cites="sandwich">(<a href="#ref-sandwich" role="doc-biblioref">Zeileis, Köll, and Graham 2020</a>)</span>.</p>
-<div class="cell">
-
-</div>
+<p>To answer the first research question, we ran a two-sample t-test in parental monitoring between AI and non-AI 15-year-old youths. To answer the second research question, we used logistic regression to examine the relation between parental monitoring and having ever smoked cigarettes. All analyses were completed using R Version 2023.03.1+446 <span class="citation" data-cites="Rcitation">(<a href="#ref-Rcitation" role="doc-biblioref">R Core Team 2023</a>)</span>. The packages used for analysis were Tidyverse <span class="citation" data-cites="tidy">(<a href="#ref-tidy" role="doc-biblioref">Wickham et al. 2019</a>)</span>, here <span class="citation" data-cites="here">(<a href="#ref-here" role="doc-biblioref">Müller 2020</a>)</span>, rio <span class="citation" data-cites="Chan2018-cy">(<a href="#ref-Chan2018-cy" role="doc-biblioref">Chan et al. 2018</a>)</span>, ggplot2 <span class="citation" data-cites="ggplot">(<a href="#ref-ggplot" role="doc-biblioref">Wickham 2016</a>)</span>, modelsummary <span class="citation" data-cites="modelsummary">(<a href="#ref-modelsummary" role="doc-biblioref">Arel-Bundock 2022</a>)</span>, janitor <span class="citation" data-cites="janitor">(<a href="#ref-janitor" role="doc-biblioref">Firke 2023</a>)</span>, gtsummary <span class="citation" data-cites="gtsummary">(<a href="#ref-gtsummary" role="doc-biblioref">Sjoberg et al. 2021</a>)</span>, forcats <span class="citation" data-cites="forcats">(<a href="#ref-forcats" role="doc-biblioref">Wickham 2023</a>)</span>, and sandwich <span class="citation" data-cites="sandwich">(<a href="#ref-sandwich" role="doc-biblioref">Zeileis, Köll, and Graham 2020</a>)</span>.</p>
 </section>
 </section>
 <section id="results" class="level1">
 <h1>Results</h1>
 <section id="data-cleaning" class="level2">
 <h2 class="anchored" data-anchor-id="data-cleaning">Data Cleaning</h2>
-<div class="cell">
-
-</div>
 </section>
 <section id="descriptive-statistics" class="level2">
 <h2 class="anchored" data-anchor-id="descriptive-statistics">Descriptive Statistics</h2>
@@ -157,23 +153,23 @@ div.csl-indent {
 </div>
 <div class="cell-output-display">
 
-<div id="tzlvqzbyuq" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#tzlvqzbyuq table {
+<div id="sqvgenrfir" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#sqvgenrfir table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#tzlvqzbyuq thead, #tzlvqzbyuq tbody, #tzlvqzbyuq tfoot, #tzlvqzbyuq tr, #tzlvqzbyuq td, #tzlvqzbyuq th {
+#sqvgenrfir thead, #sqvgenrfir tbody, #sqvgenrfir tfoot, #sqvgenrfir tr, #sqvgenrfir td, #sqvgenrfir th {
   border-style: none;
 }
 
-#tzlvqzbyuq p {
+#sqvgenrfir p {
   margin: 0;
   padding: 0;
 }
 
-#tzlvqzbyuq .gt_table {
+#sqvgenrfir .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -199,12 +195,12 @@ div.csl-indent {
   border-left-color: #D3D3D3;
 }
 
-#tzlvqzbyuq .gt_caption {
+#sqvgenrfir .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#tzlvqzbyuq .gt_title {
+#sqvgenrfir .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -216,7 +212,7 @@ div.csl-indent {
   border-bottom-width: 0;
 }
 
-#tzlvqzbyuq .gt_subtitle {
+#sqvgenrfir .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -228,7 +224,7 @@ div.csl-indent {
   border-top-width: 0;
 }
 
-#tzlvqzbyuq .gt_heading {
+#sqvgenrfir .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -240,13 +236,13 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#tzlvqzbyuq .gt_bottom_border {
+#sqvgenrfir .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#tzlvqzbyuq .gt_col_headings {
+#sqvgenrfir .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -261,7 +257,7 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#tzlvqzbyuq .gt_col_heading {
+#sqvgenrfir .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -281,7 +277,7 @@ div.csl-indent {
   overflow-x: hidden;
 }
 
-#tzlvqzbyuq .gt_column_spanner_outer {
+#sqvgenrfir .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -293,15 +289,15 @@ div.csl-indent {
   padding-right: 4px;
 }
 
-#tzlvqzbyuq .gt_column_spanner_outer:first-child {
+#sqvgenrfir .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#tzlvqzbyuq .gt_column_spanner_outer:last-child {
+#sqvgenrfir .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#tzlvqzbyuq .gt_column_spanner {
+#sqvgenrfir .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -313,11 +309,11 @@ div.csl-indent {
   width: 100%;
 }
 
-#tzlvqzbyuq .gt_spanner_row {
+#sqvgenrfir .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#tzlvqzbyuq .gt_group_heading {
+#sqvgenrfir .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -343,7 +339,7 @@ div.csl-indent {
   text-align: left;
 }
 
-#tzlvqzbyuq .gt_empty_group_heading {
+#sqvgenrfir .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -358,15 +354,15 @@ div.csl-indent {
   vertical-align: middle;
 }
 
-#tzlvqzbyuq .gt_from_md > :first-child {
+#sqvgenrfir .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#tzlvqzbyuq .gt_from_md > :last-child {
+#sqvgenrfir .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#tzlvqzbyuq .gt_row {
+#sqvgenrfir .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -385,7 +381,7 @@ div.csl-indent {
   overflow-x: hidden;
 }
 
-#tzlvqzbyuq .gt_stub {
+#sqvgenrfir .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -398,7 +394,7 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#tzlvqzbyuq .gt_stub_row_group {
+#sqvgenrfir .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -412,15 +408,15 @@ div.csl-indent {
   vertical-align: top;
 }
 
-#tzlvqzbyuq .gt_row_group_first td {
+#sqvgenrfir .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#tzlvqzbyuq .gt_row_group_first th {
+#sqvgenrfir .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#tzlvqzbyuq .gt_summary_row {
+#sqvgenrfir .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -430,16 +426,16 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#tzlvqzbyuq .gt_first_summary_row {
+#sqvgenrfir .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#tzlvqzbyuq .gt_first_summary_row.thick {
+#sqvgenrfir .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#tzlvqzbyuq .gt_last_summary_row {
+#sqvgenrfir .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -449,7 +445,7 @@ div.csl-indent {
   border-bottom-color: #D3D3D3;
 }
 
-#tzlvqzbyuq .gt_grand_summary_row {
+#sqvgenrfir .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -459,7 +455,7 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#tzlvqzbyuq .gt_first_grand_summary_row {
+#sqvgenrfir .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -469,7 +465,7 @@ div.csl-indent {
   border-top-color: #D3D3D3;
 }
 
-#tzlvqzbyuq .gt_last_grand_summary_row_top {
+#sqvgenrfir .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -479,11 +475,11 @@ div.csl-indent {
   border-bottom-color: #D3D3D3;
 }
 
-#tzlvqzbyuq .gt_striped {
+#sqvgenrfir .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#tzlvqzbyuq .gt_table_body {
+#sqvgenrfir .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -492,7 +488,7 @@ div.csl-indent {
   border-bottom-color: #D3D3D3;
 }
 
-#tzlvqzbyuq .gt_footnotes {
+#sqvgenrfir .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -506,7 +502,7 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#tzlvqzbyuq .gt_footnote {
+#sqvgenrfir .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -515,7 +511,7 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#tzlvqzbyuq .gt_sourcenotes {
+#sqvgenrfir .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -529,7 +525,7 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#tzlvqzbyuq .gt_sourcenote {
+#sqvgenrfir .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -537,63 +533,63 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#tzlvqzbyuq .gt_left {
+#sqvgenrfir .gt_left {
   text-align: left;
 }
 
-#tzlvqzbyuq .gt_center {
+#sqvgenrfir .gt_center {
   text-align: center;
 }
 
-#tzlvqzbyuq .gt_right {
+#sqvgenrfir .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#tzlvqzbyuq .gt_font_normal {
+#sqvgenrfir .gt_font_normal {
   font-weight: normal;
 }
 
-#tzlvqzbyuq .gt_font_bold {
+#sqvgenrfir .gt_font_bold {
   font-weight: bold;
 }
 
-#tzlvqzbyuq .gt_font_italic {
+#sqvgenrfir .gt_font_italic {
   font-style: italic;
 }
 
-#tzlvqzbyuq .gt_super {
+#sqvgenrfir .gt_super {
   font-size: 65%;
 }
 
-#tzlvqzbyuq .gt_footnote_marks {
+#sqvgenrfir .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#tzlvqzbyuq .gt_asterisk {
+#sqvgenrfir .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#tzlvqzbyuq .gt_indent_1 {
+#sqvgenrfir .gt_indent_1 {
   text-indent: 5px;
 }
 
-#tzlvqzbyuq .gt_indent_2 {
+#sqvgenrfir .gt_indent_2 {
   text-indent: 10px;
 }
 
-#tzlvqzbyuq .gt_indent_3 {
+#sqvgenrfir .gt_indent_3 {
   text-indent: 15px;
 }
 
-#tzlvqzbyuq .gt_indent_4 {
+#sqvgenrfir .gt_indent_4 {
   text-indent: 20px;
 }
 
-#tzlvqzbyuq .gt_indent_5 {
+#sqvgenrfir .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -608,7 +604,7 @@ div.csl-indent {
   </thead>
   <tbody class="gt_table_body">
     <tr><td headers="label" class="gt_row gt_left">Sex</td>
-<td headers="stat_0" class="gt_row gt_center"></td></tr>
+<td headers="stat_0" class="gt_row gt_center"><br></td></tr>
     <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;1</td>
 <td headers="stat_0" class="gt_row gt_center">53%</td></tr>
     <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;2</td>
@@ -664,481 +660,56 @@ div.csl-indent {
 <h2 class="anchored" data-anchor-id="parental-monitoring-and-tobacco-use-in-ai-youths">Parental Monitoring and Tobacco Use in AI Youths</h2>
 <div class="cell">
 <div class="cell-output-display">
+<table class="table table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th"></th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">&nbsp;(1)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">(Intercept)</td>
+<td style="text-align: center;">0.469***</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: center;">[0.391, 0.562]</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">scale(parent_mon_sum)</td>
+<td style="text-align: center;">0.704***</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; box-shadow: 0px 1.5px;"></td>
+<td style="text-align: center; box-shadow: 0px 1.5px;">[0.589, 0.843]</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Num.Obs.</td>
+<td style="text-align: center;">559</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">AIC</td>
+<td style="text-align: center;">693.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">BIC</td>
+<td style="text-align: center;">701.7</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Std.Errors</td>
+<td style="text-align: center;">HC3</td>
+</tr>
+</tbody><tfoot>
+<tr class="odd">
+<td style="text-align: left; padding: 0;"><sup></sup> + p &lt; 0.1, * p &lt; 0.05, ** p &lt; 0.01, *** p &lt; 0.001</td>
+<td style="text-align: center;"></td>
+</tr>
+</tfoot>
 
-<div id="okdksnyqiv" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#okdksnyqiv table {
-  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-#okdksnyqiv thead, #okdksnyqiv tbody, #okdksnyqiv tfoot, #okdksnyqiv tr, #okdksnyqiv td, #okdksnyqiv th {
-  border-style: none;
-}
-
-#okdksnyqiv p {
-  margin: 0;
-  padding: 0;
-}
-
-#okdksnyqiv .gt_table {
-  display: table;
-  border-collapse: collapse;
-  line-height: normal;
-  margin-left: auto;
-  margin-right: auto;
-  color: #333333;
-  font-size: 16px;
-  font-weight: normal;
-  font-style: normal;
-  background-color: #FFFFFF;
-  width: auto;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #A8A8A8;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #A8A8A8;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-}
-
-#okdksnyqiv .gt_caption {
-  padding-top: 4px;
-  padding-bottom: 4px;
-}
-
-#okdksnyqiv .gt_title {
-  color: #333333;
-  font-size: 125%;
-  font-weight: initial;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-color: #FFFFFF;
-  border-bottom-width: 0;
-}
-
-#okdksnyqiv .gt_subtitle {
-  color: #333333;
-  font-size: 85%;
-  font-weight: initial;
-  padding-top: 3px;
-  padding-bottom: 5px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-color: #FFFFFF;
-  border-top-width: 0;
-}
-
-#okdksnyqiv .gt_heading {
-  background-color: #FFFFFF;
-  text-align: center;
-  border-bottom-color: #FFFFFF;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-#okdksnyqiv .gt_bottom_border {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#okdksnyqiv .gt_col_headings {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-#okdksnyqiv .gt_col_heading {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 5px;
-  padding-bottom: 6px;
-  padding-left: 5px;
-  padding-right: 5px;
-  overflow-x: hidden;
-}
-
-#okdksnyqiv .gt_column_spanner_outer {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  padding-top: 0;
-  padding-bottom: 0;
-  padding-left: 4px;
-  padding-right: 4px;
-}
-
-#okdksnyqiv .gt_column_spanner_outer:first-child {
-  padding-left: 0;
-}
-
-#okdksnyqiv .gt_column_spanner_outer:last-child {
-  padding-right: 0;
-}
-
-#okdksnyqiv .gt_column_spanner {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  overflow-x: hidden;
-  display: inline-block;
-  width: 100%;
-}
-
-#okdksnyqiv .gt_spanner_row {
-  border-bottom-style: hidden;
-}
-
-#okdksnyqiv .gt_group_heading {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  text-align: left;
-}
-
-#okdksnyqiv .gt_empty_group_heading {
-  padding: 0.5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: middle;
-}
-
-#okdksnyqiv .gt_from_md > :first-child {
-  margin-top: 0;
-}
-
-#okdksnyqiv .gt_from_md > :last-child {
-  margin-bottom: 0;
-}
-
-#okdksnyqiv .gt_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  margin: 10px;
-  border-top-style: solid;
-  border-top-width: 1px;
-  border-top-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  overflow-x: hidden;
-}
-
-#okdksnyqiv .gt_stub {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#okdksnyqiv .gt_stub_row_group {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-  vertical-align: top;
-}
-
-#okdksnyqiv .gt_row_group_first td {
-  border-top-width: 2px;
-}
-
-#okdksnyqiv .gt_row_group_first th {
-  border-top-width: 2px;
-}
-
-#okdksnyqiv .gt_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#okdksnyqiv .gt_first_summary_row {
-  border-top-style: solid;
-  border-top-color: #D3D3D3;
-}
-
-#okdksnyqiv .gt_first_summary_row.thick {
-  border-top-width: 2px;
-}
-
-#okdksnyqiv .gt_last_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#okdksnyqiv .gt_grand_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#okdksnyqiv .gt_first_grand_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-style: double;
-  border-top-width: 6px;
-  border-top-color: #D3D3D3;
-}
-
-#okdksnyqiv .gt_last_grand_summary_row_top {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-style: double;
-  border-bottom-width: 6px;
-  border-bottom-color: #D3D3D3;
-}
-
-#okdksnyqiv .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
-#okdksnyqiv .gt_table_body {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#okdksnyqiv .gt_footnotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#okdksnyqiv .gt_footnote {
-  margin: 0px;
-  font-size: 90%;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#okdksnyqiv .gt_sourcenotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#okdksnyqiv .gt_sourcenote {
-  font-size: 90%;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#okdksnyqiv .gt_left {
-  text-align: left;
-}
-
-#okdksnyqiv .gt_center {
-  text-align: center;
-}
-
-#okdksnyqiv .gt_right {
-  text-align: right;
-  font-variant-numeric: tabular-nums;
-}
-
-#okdksnyqiv .gt_font_normal {
-  font-weight: normal;
-}
-
-#okdksnyqiv .gt_font_bold {
-  font-weight: bold;
-}
-
-#okdksnyqiv .gt_font_italic {
-  font-style: italic;
-}
-
-#okdksnyqiv .gt_super {
-  font-size: 65%;
-}
-
-#okdksnyqiv .gt_footnote_marks {
-  font-size: 75%;
-  vertical-align: 0.4em;
-  position: initial;
-}
-
-#okdksnyqiv .gt_asterisk {
-  font-size: 100%;
-  vertical-align: 0;
-}
-
-#okdksnyqiv .gt_indent_1 {
-  text-indent: 5px;
-}
-
-#okdksnyqiv .gt_indent_2 {
-  text-indent: 10px;
-}
-
-#okdksnyqiv .gt_indent_3 {
-  text-indent: 15px;
-}
-
-#okdksnyqiv .gt_indent_4 {
-  text-indent: 20px;
-}
-
-#okdksnyqiv .gt_indent_5 {
-  text-indent: 25px;
-}
-</style>
-<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-  <thead>
-    
-    <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id=" "> </th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="(1)">(1)</th>
-    </tr>
-  </thead>
-  <tbody class="gt_table_body">
-    <tr><td headers="" class="gt_row gt_left">(Intercept)</td>
-<td headers="(1)" class="gt_row gt_center">0.469***</td></tr>
-    <tr><td headers="" class="gt_row gt_left"></td>
-<td headers="(1)" class="gt_row gt_center">[0.391, 0.562]</td></tr>
-    <tr><td headers="" class="gt_row gt_left">scale(parent_mon_sum)</td>
-<td headers="(1)" class="gt_row gt_center">0.704***</td></tr>
-    <tr><td headers="" class="gt_row gt_left" style="border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #000000;"></td>
-<td headers="(1)" class="gt_row gt_center" style="border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #000000;">[0.589, 0.843]</td></tr>
-    <tr><td headers="" class="gt_row gt_left">Num.Obs.</td>
-<td headers="(1)" class="gt_row gt_center">559</td></tr>
-    <tr><td headers="" class="gt_row gt_left">AIC</td>
-<td headers="(1)" class="gt_row gt_center">693.0</td></tr>
-    <tr><td headers="" class="gt_row gt_left">BIC</td>
-<td headers="(1)" class="gt_row gt_center">701.7</td></tr>
-    <tr><td headers="" class="gt_row gt_left">Std.Errors</td>
-<td headers="(1)" class="gt_row gt_center">HC3</td></tr>
-  </tbody>
-  <tfoot class="gt_sourcenotes">
-    <tr>
-      <td class="gt_sourcenote" colspan="2">+ p &lt; 0.1, * p &lt; 0.05, ** p &lt; 0.01, *** p &lt; 0.001</td>
-    </tr>
-  </tfoot>
-  
 </table>
-</div>
+
+
 </div>
 <div class="cell-output-display">
 <p><img src="SubstanceAI_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
@@ -1157,71 +728,74 @@ div.csl-indent {
 
 </section>
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
-<div id="ref-modelsummary" class="csl-entry" role="doc-biblioentry">
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-modelsummary" class="csl-entry" role="listitem">
 Arel-Bundock, Vincent. 2022. <span>“<span class="nocase">modelsummary</span>: Data and Model Summaries in <span>R</span>.”</span> <em>Journal of Statistical Software</em> 103 (1): 1–23. <a href="https://doi.org/10.18637/jss.v103.i01">https://doi.org/10.18637/jss.v103.i01</a>.
 </div>
-<div id="ref-boyd-ball2014" class="csl-entry" role="doc-biblioentry">
+<div id="ref-boyd-ball2014" class="csl-entry" role="listitem">
 Boyd-Ball, Alison J., Marie-Hélène Véronneau, Thomas J. Dishion, and Kate Kavanagh. 2014. <span>“Monitoring and Peer Influences as Predictors of Increases in Alcohol Use Among American Indian Youth.”</span> <em>Prevention Science</em> 15 (4): 526–35. <a href="https://doi.org/10.1007/s11121-013-0399-1">https://doi.org/10.1007/s11121-013-0399-1</a>.
 </div>
-<div id="ref-braveheart1999" class="csl-entry" role="doc-biblioentry">
+<div id="ref-braveheart1999" class="csl-entry" role="listitem">
 Brave Heart, Maria Yellow Horse. 1999. <span>“Oyate Ptayela: Rebuilding the Lakota Nation Through Addressing Historical Trauma Among Lakota Parents.”</span> In, edited by Hilary N. Weaver, 127–44. New York: Haworth Press.
 </div>
-<div id="ref-Chan2018-cy" class="csl-entry" role="doc-biblioentry">
+<div id="ref-Chan2018-cy" class="csl-entry" role="listitem">
 Chan, Chung-Hong, Geoffrey C H Chan, Thomas J Leeper, and Jason Becker. 2018. <span>“Rio: A Swiss-Army Knife for Data File <span>I/O</span>.”</span>
 </div>
-<div id="ref-centersfordiseasecontrolandprevention2022" class="csl-entry" role="doc-biblioentry">
+<div id="ref-cdc2022" class="csl-entry" role="listitem">
+Disease Control, Center for, and Prevention [CDC]. 2022. <span>“Youth and Tobacco Use, 2022.”</span> https://doi.org/<a href="https://www.cdc.gov/tobacco/data_statistics/fact_sheets/youth_data/tobacco_use/index.htm">https://www.cdc.gov/tobacco/data_statistics/fact_sheets/youth_data/tobacco_use/index.htm</a>.
+</div>
+<div id="ref-centersfordiseasecontrolandprevention2022" class="csl-entry" role="listitem">
 Disease Control, Centers for, and Prevention. 2022. <span>“Smoking &amp; Tobacco Use: American Indian and Alaska Native People Experience a Health Burden from Commercial Tobacco.”</span> <a href="https://www.cdc.gov/tobacco/health-equity/aian/health-burden.html">https://www.cdc.gov/tobacco/health-equity/aian/health-burden.html</a>.
 </div>
-<div id="ref-dishion1998" class="csl-entry" role="doc-biblioentry">
+<div id="ref-dishion1998" class="csl-entry" role="listitem">
 Dishion, Thomas J., and Robert J. McMahon. 1998. <span>“Parental Monitoring and the Prevention of Child and Adolescent Problem Behavior: A Conceptual and Empirical Formulation.”</span> <em>Clinical Child and Family Psychology Review</em> 1 (1): 61–75. <a href="https://doi.org/10.1023/A:1021800432380">https://doi.org/10.1023/A:1021800432380</a>.
 </div>
-<div id="ref-dishion2003" class="csl-entry" role="doc-biblioentry">
+<div id="ref-dishion2003" class="csl-entry" role="listitem">
 Dishion, Thomas J., Sarah E. Nelson, and Kathryn Kavanagh. 2003. <span>“The Family Check-Up with High-Risk Young Adolescents: Preventing Early-Onset Substance Use by Parent Monitoring.”</span> <em>Behavior Therapy</em> 34 (4): 553–71. <a href="https://doi.org/10.1016/S0005-7894(03)80035-7">https://doi.org/10.1016/S0005-7894(03)80035-7</a>.
 </div>
-<div id="ref-janitor" class="csl-entry" role="doc-biblioentry">
+<div id="ref-janitor" class="csl-entry" role="listitem">
 Firke, Sam. 2023. <em>Janitor: Simple Tools for Examining and Cleaning Dirty Data</em>. <a href="https://CRAN.R-project.org/package=janitor">https://CRAN.R-project.org/package=janitor</a>.
 </div>
-<div id="ref-FDA2023" class="csl-entry" role="doc-biblioentry">
+<div id="ref-FDA2023" class="csl-entry" role="listitem">
 Food, and Drug Administration. 2023. <span>“Commercial Tobacco Use in American Indian and Alaska Native Populations.”</span> <a href="https://www.fda.gov/consumers/minority-health-and-health-equity-resources/commercial-tobacco-use-american-indian-and-alaska-native-populations">https://www.fda.gov/consumers/minority-health-and-health-equity-resources/commercial-tobacco-use-american-indian-and-alaska-native-populations</a>.
 </div>
-<div id="ref-haruyama2023" class="csl-entry" role="doc-biblioentry">
+<div id="ref-haruyama2023" class="csl-entry" role="listitem">
 Haruyama, Dorothy, Mark A. Prince, Randall C. Swaim, and Ernest L. Chavez. 2023. <span>“The Relationship Between Depressed Affect, Parental Monitoring, and Sex on Cannabis Use Among American Indian Youth.”</span> <em>The American Journal on Addictions</em> 32 (4): 402–9. <a href="https://doi.org/10.1111/ajad.13416">https://doi.org/10.1111/ajad.13416</a>.
 </div>
-<div id="ref-martell2016" class="csl-entry" role="doc-biblioentry">
+<div id="ref-martell2016" class="csl-entry" role="listitem">
 Martell, Brandi N., Bridgette E. Garrett, and Ralph S. Caraballo. 2016. <span>“Disparities in Adult Cigarette Smoking <span></span> United States, 2002<span></span>2005 and 2010<span></span>2013.”</span> <em>MMWR. Morbidity and Mortality Weekly Report</em> 65 (30): 753–58. <a href="https://doi.org/10.15585/mmwr.mm6530a1">https://doi.org/10.15585/mmwr.mm6530a1</a>.
 </div>
-<div id="ref-here" class="csl-entry" role="doc-biblioentry">
+<div id="ref-here" class="csl-entry" role="listitem">
 Müller, Kirill. 2020. <em>Here: A Simpler Way to Find Your Files</em>. <a href="https://CRAN.R-project.org/package=here">https://CRAN.R-project.org/package=here</a>.
 </div>
-<div id="ref-park-lee2022" class="csl-entry" role="doc-biblioentry">
+<div id="ref-park-lee2022" class="csl-entry" role="listitem">
 Park-Lee, Eunice, Chunfeng Ren, Maria Cooper, Monica Cornelius, Ahmed Jamal, and Karen A. Cullen. 2022. <span>“Tobacco Product Use Among Middle and High School Students <span></span> United States, 2022.”</span> <em>MMWR. Morbidity and Mortality Weekly Report</em> 71 (45): 1429–35. <a href="https://doi.org/10.15585/mmwr.mm7145a1">https://doi.org/10.15585/mmwr.mm7145a1</a>.
 </div>
-<div id="ref-Rcitation" class="csl-entry" role="doc-biblioentry">
+<div id="ref-Rcitation" class="csl-entry" role="listitem">
 R Core Team. 2023. <em>R: A Language and Environment for Statistical Computing</em>. Vienna, Austria: R Foundation for Statistical Computing. <a href="https://www.R-project.org/">https://www.R-project.org/</a>.
 </div>
-<div id="ref-schick2022" class="csl-entry" role="doc-biblioentry">
+<div id="ref-schick2022" class="csl-entry" role="listitem">
 Schick, Melissa R., Tessa Nalven, Emmanuel D. Thomas, Nicole H. Weiss, and Nichea S. Spillane. 2022. <span>“Depression and Alcohol Use in American Indian Adolescents: The Influence of Family Factors.”</span> <em>Alcoholism: Clinical and Experimental Research</em> 46 (1): 141–51. <a href="https://doi.org/10.1111/acer.14748">https://doi.org/10.1111/acer.14748</a>.
 </div>
-<div id="ref-gtsummary" class="csl-entry" role="doc-biblioentry">
+<div id="ref-gtsummary" class="csl-entry" role="listitem">
 Sjoberg, Daniel D., Karissa Whiting, Michael Curry, Jessica A. Lavery, and Joseph Larmarange. 2021. <span>“Reproducible Summary Tables with the Gtsummary Package.”</span> <em><span>The R Journal</span></em> 13: 570–80. <a href="https://doi.org/10.32614/RJ-2021-053">https://doi.org/10.32614/RJ-2021-053</a>.
 </div>
-<div id="ref-AIdataset" class="csl-entry" role="doc-biblioentry">
+<div id="ref-AIdataset" class="csl-entry" role="listitem">
 Swaim, Randall C., and Linda R. Stanley. 2021. <span>“Substance Use Among American Indian Youth: Epidemiology and Etiology, [United States], 2015-2020.”</span> Inter-university Consortium for Political; Social Research. <a href="https://doi.org/10.3886/ICPSR37997.v1">https://doi.org/10.3886/ICPSR37997.v1</a>.
 </div>
-<div id="ref-walters2011" class="csl-entry" role="doc-biblioentry">
+<div id="ref-walters2011" class="csl-entry" role="listitem">
 Walters, Karina L., Selina A. Mohammed, Teresa Evans-Campbell, Ramona E. Beltrán, David H. Chae, and Bonnie Duran. 2011. <span>“Bodies Don’t Just Tell Stories, They Tell Histories: Embodiment of Historical Trauma Among American Indians and Alaska Natives.”</span> <em>Du Bois Review: Social Science Research on Race</em> 8 (1): 179–89. <a href="https://doi.org/10.1017/S1742058X1100018X">https://doi.org/10.1017/S1742058X1100018X</a>.
 </div>
-<div id="ref-ggplot" class="csl-entry" role="doc-biblioentry">
+<div id="ref-ggplot" class="csl-entry" role="listitem">
 Wickham, Hadley. 2016. <em>Ggplot2: Elegant Graphics for Data Analysis</em>. Springer-Verlag New York. <a href="https://ggplot2.tidyverse.org">https://ggplot2.tidyverse.org</a>.
 </div>
-<div id="ref-forcats" class="csl-entry" role="doc-biblioentry">
+<div id="ref-forcats" class="csl-entry" role="listitem">
 ———. 2023. <em>Forcats: Tools for Working with Categorical Variables (Factors)</em>. <a href="https://forcats.tidyverse.org/">https://forcats.tidyverse.org/</a>.
 </div>
-<div id="ref-tidy" class="csl-entry" role="doc-biblioentry">
+<div id="ref-tidy" class="csl-entry" role="listitem">
 Wickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. <span>“Welcome to the <span class="nocase">tidyverse</span>.”</span> <em>Journal of Open Source Software</em> 4 (43): 1686. <a href="https://doi.org/10.21105/joss.01686">https://doi.org/10.21105/joss.01686</a>.
 </div>
-<div id="ref-sandwich" class="csl-entry" role="doc-biblioentry">
+<div id="ref-sandwich" class="csl-entry" role="listitem">
 Zeileis, Achim, Susanne Köll, and Nathaniel Graham. 2020. <span>“Various Versatile Variances: An Object-Oriented Implementation of Clustered Covariances in <span>R</span>.”</span> <em>Journal of Statistical Software</em> 95 (1): 1–36. <a href="https://doi.org/10.18637/jss.v095.i01">https://doi.org/10.18637/jss.v095.i01</a>.
 </div>
 </div></section></div></main>
@@ -1253,9 +827,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -1320,6 +908,92 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {
