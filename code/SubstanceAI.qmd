@@ -198,15 +198,15 @@ Only15yos <- R1_clean_num %>% filter(age=="(15) 15")
 desg <- Only15yos %>% select(sex, ever_smoked, AI, parent_mon_sum)
 
 
-desg %>% mutate(
-  sex=fct_recode(as.factor(sex),
-                 Male = "1",
-                 Female = "2")
-)
+desg$sex <-recode(as.factor(desg$sex),
+                  "1" = "Male",
+                 "2" = "Female")
+
+str(desg)
 
 #get rid of grouping variables
 des <- desg[,3:6]
-des %>% 
+destb<- des %>% 
   tbl_summary(
   statistic = list(
     sex ~ "{p}%", ever_smoked ~ "{p}%", AI ~ "{p}%"
@@ -216,14 +216,21 @@ des %>%
     ever_smoked ~ "Ever Smoked",
     AI ~ "AI",
     parent_mon_sum ~ "Parental Monitoring"
-   )) %>% modify_caption("**Table 1. Descriptive Statistics**")
-
+   )) %>% modify_caption("**Table 1. Descriptive Statistics**") 
+str(destb)
+N <- nrow(des)
+Nsmoke <- nrow(des[des$ever_smoked==1,])
+NAI <- nrow(des[des$AI==1,])
+minPM <- min(des$parent_mon_sum)
+maxPM <- max(des$parent_mon_sum)
+NM <- nrow(des[des$sex=="Male",])
+NF <- nrow(des[des$sex=="Female",])
 #range(desg$parent_mon_sum)
 mean_monitoring <-mean(desg$parent_mon_sum)
 
 ```
 
-Of the 15 year olds included in this sample (N= 847), 27% reported ever having smoked a cigarette. The majority of the students in this sample self-identified as AI (66%). Most students self reported relatively high levels of parental monitoring (M= `r mean_monitoring` on the parental monitoring scale, which ranged in possible values from 9-45, with higher scores indicating more monitoring. 53% of our sample identified as male and 47% identified as female, indicating a relatively equal breakdown by sex.
+Of the 15 year olds included in this sample (N= `r N`), `r 100*Nsmoke/N` % reported ever having smoked a cigarette. The majority of the students in this sample self-identified as AI (`r 100*NAI/N`%). Most students self reported relatively high levels of parental monitoring (M= `r mean_monitoring` on the parental monitoring scale, which ranged in possible values from `r minPM`-`r maxPM`, with higher scores indicating more monitoring. `r 100*NM/N`% of our sample identified as male and `r 100*NF/N`% identified as female, indicating a relatively equal breakdown by sex.
 
 ## AI Students and Parental Monitoring
 
@@ -238,7 +245,7 @@ desg_w <- desg %>%
     values_from = parent_mon_sum,
     names_glue = "AI_{AI}"
   )
-str(t.test(desg_w$AI_0,desg_w$AI_1))
+#str(t.test(desg_w$AI_0,desg_w$AI_1))
 t.value <- t.test(desg_w$AI_0,desg_w$AI_1)$statistic[["t"]]
 df <- t.test(desg_w$AI_0,desg_w$AI_1)$parameter
 p.value <- t.test(desg_w$AI_0,desg_w$AI_1)$p.value
