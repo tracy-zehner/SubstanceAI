@@ -228,6 +228,9 @@ NF <- nrow(des[des$sex=="Female",])
 #range(desg$parent_mon_sum)
 mean_monitoring <-mean(desg$parent_mon_sum)
 
+
+# I think there is a way to make this so that the Descriptive stats raw data do not display in the rendered document. 
+# I think you can place the table code into a separate chunk, and then add "include false" in the other chunk. 
 ```
 
 Of the 15 year olds included in this sample (N= `r N`), `r 100*Nsmoke/N` % reported ever having smoked a cigarette. The majority of the students in this sample self-identified as AI (`r 100*NAI/N`%). Most students self reported relatively high levels of parental monitoring (M= `r mean_monitoring` on the parental monitoring scale, which ranged in possible values from `r minPM`-`r maxPM`, with higher scores indicating more monitoring. `r 100*NM/N`% of our sample identified as male and `r 100*NF/N`% identified as female, indicating a relatively equal breakdown by sex.
@@ -257,6 +260,9 @@ mean2 <- t.test(desg_w$AI_0,desg_w$AI_1)$estimate[2]
 ggplot(des,aes(x=factor(AI),y=parent_mon_sum))+geom_boxplot()+labs(x="AI", y="Parental Monitoring", title = "Figure 1. Boxplot of Parental Monitoring in AI and Non-AI 15-Year-Old Youths")
 #boxplot(desg_w$AI_0,desg_w$AI_1, ylab = "Parental Monitoring", names=c("Non AI","AI"))
 #Alternative way to generate boxplot but title is not there
+
+# I think there is a way to make this so that the Descriptive stats raw data do not display in the rendered document. 
+# I think you can place the table code into a separate chunk, and then add "include false" in the other chunk. 
 ```
 
 Independent two-sample t-test in parental monitoring between AI and non-AI 15-year-old youths showed that AI youths reported significantly lower parental monitoring than non-AI youths (M1= `r mean2`, M2= `r mean1`, `r t.value`, df= `r df`, p= `r p.value`).
