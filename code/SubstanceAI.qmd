@@ -14,7 +14,7 @@ bibliography: references.bib
 
 # Abstract
 
-American Indians (AI) and Alaska Natives (AN) report greater cigarette use than all other racial and ethnic groups and subgroups in the U.S. [@martell2016]. Tobacco use is a major cause of cardiovascular disease [@centersfordiseasecontrolandprevention2022], and cardiovascular disease and lung cancer are leading causes of death among people who identify as American Indian [@centersfordiseasecontrolandprevention2022]. While past research posits that high rates of tobacco use in AI and AN youth may be due to culturally traditional use and tobacco companies targeting marginalized groups [@FDA2023], less is known about how parental monitoring contributes to tobacco use. The purpose of this study was to examine if AI youth have lower reported parental monitoring compared to non-AI youth and the extent to which parental monitoring predicted ever smoking cigarettes. We hypothesized that higher reported parental monitoring would be related to lower tobacco usage rates, on average, in a population of AI and AN adolescents. Data came from the publicly available Substance Use Among American Indian Youth dataset (N = 847, 47% female). We found that AI youth had less parental monitoring compared to non-AI peers, and parental monitoring significantly predicted having ever smoked cigarettes. Findings suggest that parental monitoring is a protective factor for AI youth and it may help decrease tobacco usage in this population of youth.
+American Indians (AI) and Alaska Natives (AN) report greater cigarette use than all other racial and ethnic groups and subgroups in the U.S. [@martell2016]. Tobacco use is a major cause of cardiovascular disease and lung cancer [@centersfordiseasecontrolandprevention2022], both of which are leading causes of death among people who identify as American Indian [@centersfordiseasecontrolandprevention2022]. While past research posits that high rates of tobacco use in AI and AN youth may be due to culturally traditional use and tobacco companies targeting marginalized groups [@FDA2023], less is known about how parental monitoring contributes to tobacco use. The purpose of this study was to examine if AI youth have lower reported parental monitoring compared to non-AI youth and the extent to which parental monitoring predicted ever smoking cigarettes. We hypothesized that higher reported parental monitoring would be related to lower tobacco usage rates, on average, in a population of AI and AN adolescents. Data came from the publicly available Substance Use Among American Indian Youth dataset (N = 847, 47% female). We found that AI youth had less parental monitoring compared to non-AI peers, and parental monitoring significantly predicted having ever smoked cigarettes. Findings suggest that parental monitoring is a protective factor for AI youth and it may help decrease tobacco usage in this population of youth.
 
 # Introduction
 
@@ -26,10 +26,10 @@ Parental monitoring -- parenting behaviors including attention to where children
 
 Our research questions were the following:
 
-1.  Do AI students report lower reported parental monitoring compared to non-AI students? We hypothesized that AI students would report lower parental monitoring compared to non-AI students.
+1.  Do AI students report less parental monitoring compared to non-AI students? We hypothesized that AI students would report less parental monitoring compared to non-AI students.
 2.  Do AI students with higher reported parental monitoring use substances at lower rates? We hypothesized that AI students with higher reported parental monitoring do use substances at lower rates compared to non-AI students.
 
-Although people who identify as AI and AN have similar needs and experiences, the populations are not interchangeable. The focus of this study was exclusively on AI youth.
+Although people who identify as AI and AN are often lumped together and may have similar needs, the populations are not interchangeable. The focus of this study was exclusively on AI youth currently residing in the .
 
 # Methods
 
@@ -70,11 +70,10 @@ sub <- import(here("data", "37997-0001-Data.rda"))%>%
 
 # Results
 
-## Data Cleaning
-
 ```{r}
 #| echo: false
 
+###data cleaning###
 #finding participant identifier
 #length(unique(sub$enddate, sub$startdate, sub$q2, sub$q1, sub$q3)) 
 
@@ -185,15 +184,13 @@ Only15yos <- R1_clean_num %>% filter(age=="(15) 15")
 
 #descriptives:_% of 15 yo have ever used cigarettes; parent_mon range and mean; n; sex; gender; race/ethn
 
-#need to add labels to sex (relevel?), 1= male, 2=female, the code below isn't doing what I want, but it's something I've tried
-
 desg <- Only15yos %>% select(sex, ever_smoked, AI, parent_mon_sum)
 
 desg$sex <-recode(as.factor(desg$sex),
                   "1" = "Male",
                  "2" = "Female")
 
-str(desg)
+#str(desg)
 
 #get rid of grouping variables
 des <- desg[,3:6]
@@ -208,7 +205,7 @@ destb<- des %>%
     AI ~ "AI",
     parent_mon_sum ~ "Parental Monitoring"
    )) %>% modify_caption("**Table 1. Descriptive Statistics**") 
-str(destb)
+#str(destb)
 N <- nrow(des)
 Nsmoke <- nrow(des[des$ever_smoked==1,])
 NAI <- nrow(des[des$AI==1,])
@@ -223,9 +220,17 @@ mean_monitoring <-mean(desg$parent_mon_sum)
 
 #Comment from another reviewer:
 # I think there is a way to make this so that the Descriptive stats raw data do not display in the rendered document. 
-# I think you can place the table code into a separate chunk, and then add "include false" in the other chunk. 
+# I think you can place the table code into a separate chunk, and then add "include false" in the other chunk.
 ```
 
+```{}
+```
+
+```{r}
+print(destb)
+```
+
+\
 Of the 15-year-old participants in this sample (N= `r N`), `r 100*Nsmoke/N`% reported ever having smoked a cigarette. The majority of students in this sample self-identified as AI (`r 100*NAI/N`%). Most students self-reported relatively high levels of parental monitoring (M= `r mean_monitoring`) on the parental monitoring scale, which ranged in possible values from `r minPM`-`r maxPM`, with higher scores indicating more monitoring. `r 100*NM/N`% of our sample identified as male and `r 100*NF/N`% identified as female, indicating a relatively equal distribution of participants by sex.
 
 ## AI Students and Parental Monitoring
@@ -252,12 +257,11 @@ mean2 <- t.test(desg_w$AI_0,desg_w$AI_1)$estimate[2]
 #visualization
 ggplot(des,aes(x=factor(AI),y=parent_mon_sum)) +
   geom_boxplot() +
-  labs(x="AI", 
+  labs(x="Race", 
        y="Parental Monitoring", 
-       title = "Figure 1. Boxplot of Parental Monitoring in AI and Non-AI 15-Year-Old Youths")
-
-#Alternative way to generate boxplot but title is not there:
-#boxplot(desg_w$AI_0,desg_w$AI_1, ylab = "Parental Monitoring", names=c("Non AI","AI"))
+       title = "Figure 1. Boxplot of Parental Monitoring in Non-AI and AI 15-Year-Olds") +
+  scale_x_discrete(labels=c("Non-AI", "AI")) +
+  theme_minimal()
 
 #comment from peer reviewer: it would be helpful to include a description of the boxplot figure pointing out what the AI codes mean and pointing out the major trend you want to draw the readers attention to.
 
@@ -297,12 +301,22 @@ modelsummary(RQ2model,
   #ylab("Probability of smoking")
 
 ##The codes above and below this line essentially generate the same plots
-ggplot(Only15yosAI, aes(parent_mon_sum, ever_smoked)) +
+figure2<- ggplot(Only15yosAI, aes(parent_mon_sum, ever_smoked)) +
   geom_point(alpha = 0.15) +
   geom_smooth(method = "glm", method.args = list(family = "binomial")) +
-  ggtitle("Figure 2. Scatter plot of Parental Monitoring and Ever Smoked Report in AI 15-Year-Old Youths") +
-  xlab("Parent monitoring") +
-  ylab("Ever smoked")
+  ggtitle("Figure 2. Scatter plot of Parental Monitoring and Probability of Ever having 
+          Smoked in AI 15-Year-Olds") +
+  labs(x="Parent monitoring",
+       y="Probability of ever having smoked",
+       caption = "Note. The dots along the top and bottom of this graph represent the number of points at each level of parental 
+       monitoring. Darker dots indicate that there are more points clustered at that level of parental monitoring, 
+       while more translucent dots indicate that there are fewer points clustered at that x value.") +
+  theme_minimal()
+
+figure2 + theme(
+  plot.caption = element_text(hjust = 0),
+  plot.title = element_text(hjust = 0.5)
+  )
 
 #effect_plot(RQ1model, pred = ever_smoked, interval = TRUE, y.label = "ever_smoked") This function would help plot predictions, it should be in the ggplot2 package but couldn't find the fuction? XM left the comment here in case anyone knows the solution
 ```
