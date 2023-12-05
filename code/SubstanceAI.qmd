@@ -82,6 +82,13 @@ R1 <- na.omit(sub %>%
 #str(R1)
 
 #recoding to get rid of text in levels
+#R1_clean<- R1 %>%
+#  mutate(across(b109_1:b109_9,~recode(.x, '(1) Never' = "1", '(2) Rarely' = "2", '(3) Sometimes' = "3", '(4) Most of the time' = "4", '(5) Always' = "5"))) %>%
+#  mutate(b109_7=recode(b109_7, '1' = "5", '2' = "4", '3' = "3", '4' = "2", '5' = "1")) %>%
+#  mutate(q11=recode(q11, '(1) Never' = "0", '(2) Once or twice' = "1", '(3) Occasionally but not regularly' = "1", '(4) Regularly in the past' = "1", '(5) Regularly now' = "1"))%>%
+#  mutate(q4_3=recode(q4_3,'(0) No'="0",'(1) Yes'="1"))%>%
+#  mutate(q3=recode(q3,'(1) Male'="1",'(2) Female'="2"))
+
 R1_clean <- R1 %>% 
   mutate(b109_1=recode(b109_1, '(1) Never' = "1", '(2) Rarely' = "2", '(3) Sometimes' = "3", '(4) Most of the time' = "4", '(5) Always' = "5")) %>%
   mutate(b109_2=recode(b109_1, '(1) Never' = "1", '(2) Rarely' = "2", '(3) Sometimes' = "3", '(4) Most of the time' = "4", '(5) Always' = "5")) %>%
@@ -184,13 +191,12 @@ Only15yos <- R1_clean_num %>% filter(age=="(15) 15")
 
 #descriptives:_% of 15 yo have ever used cigarettes; parent_mon range and mean; n; sex; gender; race/ethn
 
-desg <- Only15yos %>% select(sex, ever_smoked, AI, parent_mon_sum)
+desg <- Only15yos %>% select(startdate,enddate,sex, ever_smoked, AI, parent_mon_sum)
 
 desg$sex <-recode(as.factor(desg$sex),
                   "1" = "Male",
                  "2" = "Female")
 
-#str(desg)
 
 #get rid of grouping variables
 des <- desg[,3:6]
@@ -205,7 +211,7 @@ destb<- des %>%
     AI ~ "AI",
     parent_mon_sum ~ "Parental Monitoring"
    )) %>% modify_caption("**Table 1. Descriptive Statistics**") 
-#str(destb)
+
 N <- nrow(des)
 Nsmoke <- nrow(des[des$ever_smoked==1,])
 NAI <- nrow(des[des$AI==1,])
@@ -246,7 +252,19 @@ desg_w <- desg %>%
 #str(t.test(desg_w$AI_0,desg_w$AI_1))
 t.value <- t.test(desg_w$AI_0,desg_w$AI_1)$statistic[["t"]]
 df <- t.test(desg_w$AI_0,desg_w$AI_1)$parameter
-p.value <- t.test(desg_w$AI_0,desg_w$AI_1)$p.value
+p.value1 <- t.test(desg_w$AI_0,desg_w$AI_1)$p.value
+if(p.value1<0.001){
+  sign1<-"<"
+  p1<-".001"}else if(p.value1<0.1){
+    sign1<-"<"
+    p1<-"<.01"
+  }else if(p.value1<0.5){
+    sign1<-"<"
+    p1<-"<.05"
+  }else{
+    sign1<-"="
+    p1<-p.value1
+  }
 mean1 <- t.test(desg_w$AI_0,desg_w$AI_1)$estimate[1]
 mean2 <- t.test(desg_w$AI_0,desg_w$AI_1)$estimate[2]
 # extracted statistics for in-text code
@@ -260,14 +278,14 @@ ggplot(des,aes(x=factor(AI),y=parent_mon_sum)) +
   scale_x_discrete(labels=c("Non-AI", "AI")) +
   theme_minimal()
 
-#comment from peer reviewer: it would be helpful to include a description of the boxplot figure pointing out what the AI codes mean and pointing out the major trend you want to draw the readers attention to.
+#comment from peer reviewer: it would be helpful to include a description of the boxplot figure pointing out what the AI codes mean and pointing out the major trend you want to draw the readers attention to. 
 
 #Comment from another reviewer:
 # I think there is a way to make this so that the Descriptive stats raw data do not display in the rendered document. 
 # I think you can place the table code into a separate chunk, and then add "include false" in the other chunk. 
 ```
 
-The independent two-sample t-test on parental monitoring between AI and non-AI 15-year-old participants showed that AI participants reported significantly lower parental monitoring than non-AI participants (M1= `r mean2`, M2= `r mean1`, `r t.value`, df= `r df`, p= `r p.value`).
+The independent two-sample t-test on parental monitoring between AI and non-AI 15-year-old participants showed that AI participants reported significantly lower parental monitoring than non-AI participants (M1= `r round(mean2,3)`, M2= `r round(mean1,3)`, `r round(t.value,3)`, df= `r df`, *p* `r sign1` `r p1`). Figure 1 showed that AI 15-year-old participants had lower average parental monitoring than non-AI 15-year-old participants.
 
 ## Parental Monitoring and Tobacco Use in AI Youth
 
@@ -280,24 +298,30 @@ Only15yosAI <- R1_clean_num %>% filter(age=="(15) 15"& AI=="1")
 #modeling the relationship; filtered 15 yo ai/an
 RQ2model <- glm(ever_smoked ~ scale(parent_mon_sum), data=Only15yosAI, family=binomial(link="logit"))
 #summary(RQ2model)
-#str(RQ2model)
-modelsummary(RQ2model,
-             exponentiate = TRUE,
-             gof_omit = "Log.Lik.|F|RMSE",
-             vcov="robust",
-             statistic = "conf.int",
-             stars = TRUE)
+
+#modelsummary(RQ2model,
+#             exponentiate = TRUE,
+#             gof_omit = "Log.Lik.|F|RMSE",
+#             vcov="robust",
+#             statistic = "conf.int",
+#             stars = TRUE, output="markdown")
+expcoef<-exp(coef(RQ2model))
+expconf<-exp(confint(RQ2model))
+p.value2<-coef(summary(RQ2model))[8]
+if(p.value2<0.001){
+  sign2<-"<"
+  p2<-".001"}else if(p.value2<0.1){
+    sign2<-"<"
+    p2<-"<.01"
+  }else if(p.value2<0.5){
+    sign2<-"<"
+    p2<-"<.05"
+  }else{
+    sign2<-"="
+    p2<-p.value2
+  }
 
 #visualizing
-#visRQ2 <- Only15yos %>% mutate(prob = ifelse(ever_smoked == "1", 1, 0))
-#ggplot(visRQ1, aes(parent_mon_sum, prob)) +
- # geom_point(alpha = 0.15) +
-  #geom_smooth(method = "glm", method.args = list(family = "binomial")) +
-  #ggtitle("Predicted probabilities for RQ2") +
-  #xlab("Parent monitoring") +
-  #ylab("Probability of smoking")
-
-##The codes above and below this line essentially generate the same plots
 figure2<- ggplot(Only15yosAI, aes(parent_mon_sum, ever_smoked)) +
   geom_point(alpha = 0.15) +
   geom_smooth(method = "glm", method.args = list(family = "binomial")) +
@@ -315,10 +339,9 @@ figure2 + theme(
   plot.title = element_text(hjust = 0.5)
   )
 
-#effect_plot(RQ1model, pred = ever_smoked, interval = TRUE, y.label = "ever_smoked") This function would help plot predictions, it should be in the ggplot2 package but couldn't find the fuction? XM left the comment here in case anyone knows the solution
 ```
 
-A logistic regression model revealed that for each point increase in parental monitoring, AI youth in this sample were, on average, about 30% less likely to have initiated smoking tobacco by age 15 (B= 0.70, 95%CI\[0.59, 0.842\], p\<.001).
+A logistic regression model revealed that for each point increase in parental monitoring, AI youth in this sample were, on average, about `r round((1-expcoef[2])*100,3)`% less likely to have initiated smoking tobacco by age 15 (B= `r round(expcoef[2],3)`, 95%CI\[`r round(expconf[2],3)`, `r round(expconf[4],3)`\], *p*`r sign2``r p2`).
 
 # Discussion
 
