@@ -223,11 +223,8 @@ mean_monitoring <-mean(desg$parent_mon_sum)
 # I think you can place the table code into a separate chunk, and then add "include false" in the other chunk.
 ```
 
-```{}
-```
-
 ```{r}
-print(destb)
+destb
 ```
 
 \
