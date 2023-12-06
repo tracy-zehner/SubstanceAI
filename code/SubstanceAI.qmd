@@ -35,7 +35,7 @@ Although people who identify as AI and AN are often lumped together and may have
 
 ## Participants
 
-Data came from the Substance Use Among American Indian Youth (2015-2020) data set [@AIdataset]. Participants were AI adolescents in grades 7 and above attending school on or near (within 25 miles of) AI reservations or designated tribal lands across the U.S. Students were recruited through letters sent home to parents and through posts on local media sites.
+Data came from the Substance Use Among American Indian Youth (2015-2020) data set [@AIdataset]. Participants were adolescents in grades 7 and above attending school on or near (within 25 miles of) AI reservations or designated tribal lands across the U.S. Students were recruited through letters sent home to parents and through posts on local media sites.
 
 To identify participating schools, the following data sets were used: the NCES Common Core of Data (CCD), the NCES Private School Universe Survey (PPS), and the Bureau of Indian Education (BIE) National Directory. Only schools with at least 20% AI enrollment and total enrollment of at least 20 students were eligible, and eligible schools were randomly selected to participate.
 
@@ -153,7 +153,7 @@ R1_clean_num <- cbind(R1_clean, q3n,q4_3n,q11_d, b109_1n, b109_2n, b109_3n, b109
 # creating parent monitoring variable from the sum of b109_1:b109_9 (b109_7 was reverse coded) by participant
 R1_clean_num <- R1_clean_num%>%
   group_by(startdate, enddate) %>%
-  mutate(parent_mon_sum = b109_1n+b109_2n+b109_3n+b109_4n+b109_5n+b109_6n+ b109_7n+b109_8n+b109_9n)
+  mutate(parent_mon_sum = b109_1n+b109_2n+b109_3n+b109_4n+b109_5n+b109_6n+ b109_7n+b109_8n+b109_9n) 
 
 
 ## maybe use SUMMARIZE instead of mutate                        
@@ -164,7 +164,7 @@ R1_clean_num <- R1_clean_num%>%
 
 #check which age has the least missingness on our parental monitoring and tobacco use
 R1_clean_num <- R1_clean_num %>% 
-  rename(ever_smoked = q11_d, age = q2, AI = q4_3n,sex = q3n)
+  rename(ever_smoked = q11_d, age = q2, AI = q4_3n,sex = q3n) 
 
 #str(R1_clean_num)
 
@@ -237,6 +237,15 @@ destb
 Of the 15-year-old participants in this sample (N= `r N`), `r 100*Nsmoke/N`% reported ever having smoked a cigarette. The majority of students in this sample self-identified as AI (`r 100*NAI/N`%). Most students self-reported relatively high levels of parental monitoring (M= `r mean_monitoring`) on the parental monitoring scale, which ranged in possible values from `r minPM`-`r maxPM`, with higher scores indicating more monitoring. `r 100*NM/N`% of our sample identified as male and `r 100*NF/N`% identified as female, indicating a relatively equal distribution of participants by sex.
 
 ## AI Students and Parental Monitoring
+```{r}
+#| eval: false
+#| echo: false
+
+# summarize mean of parent mon by AI (yes/no)
+desg %>%
+  group_by(AI) %>%
+  summarize(mean(parent_mon_sum))
+```
 
 ```{r}
 #| echo: false
@@ -247,7 +256,7 @@ desg_w <- desg %>%
   pivot_wider(
     names_from = AI,
     values_from = parent_mon_sum,
-    names_glue = "AI_{AI}")
+    names_glue = "AI_{AI}") 
 
 #str(t.test(desg_w$AI_0,desg_w$AI_1))
 t.value <- t.test(desg_w$AI_0,desg_w$AI_1)$statistic[["t"]]
@@ -283,6 +292,19 @@ ggplot(des,aes(x=factor(AI),y=parent_mon_sum)) +
 #Comment from another reviewer:
 # I think there is a way to make this so that the Descriptive stats raw data do not display in the rendered document. 
 # I think you can place the table code into a separate chunk, and then add "include false" in the other chunk. 
+```
+
+```{r}
+
+# pivot AI back to longer
+desg_l <- desg_w %>%
+  pivot_longer(
+    cols = starts_with("AI"),
+    names_to = "AI",
+    values_to = "parent_mon_sum"
+  )
+    
+
 ```
 
 The independent two-sample t-test on parental monitoring between AI and non-AI 15-year-old participants showed that AI participants reported significantly lower parental monitoring than non-AI participants (M1= `r round(mean2,3)`, M2= `r round(mean1,3)`, `r round(t.value,3)`, df= `r df`, *p* `r sign1` `r p1`). Figure 1 showed that AI 15-year-old participants had lower average parental monitoring than non-AI 15-year-old participants.
