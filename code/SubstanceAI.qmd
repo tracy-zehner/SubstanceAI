@@ -18,7 +18,7 @@ American Indians (AI) and Alaska Natives (AN) report greater cigarette use than 
 
 # Introduction
 
-People who identify as American Indian (AI) or Alaska Native (AN) report greater cigarette use than all other racial and ethnic groups and subgroups in the U.S. [@martell2016]. In 2022, middle and high-school students who identified as AI/AN were also more likely to report ever having used a tobacco product compared to all other racial/ethnic groups (13.5% of AI/AN compared to 13% who identified as multiracial, 12.4% who identified as White, 11.5% who identified as Black, 11.1% who identified as Hispanic/Latinx, and 3.1% who identified as Asian; [@park-lee2022]). Nine out of ten U.S. smokers who report smoking at least daily tried their first cigarette before the age of 18 [@cdc2022]. Tobacco use can cause cardiovascular disease and lung cancer which, respectively, are the leading causes of death and cancer deaths among people who identify as AI [@centersfordiseasecontrolandprevention2022]. Identifying risk and protective factors of tobacco use among AI youth is a top priority given the racial disparity in youth smoking rates and the substantial health burden caused by tobacco use in this community.
+People who identify as American Indian (AI) or Alaska Native (AN) report greater cigarette use than all other racial and ethnic groups and subgroups in the U.S. [@martell2016]. In 2022, middle and high-school students who identified as AI/AN were also more likely to report ever having used a tobacco product compared to all other racial/ethnic groups (13.5% of AI/AN compared to 13% who identified as multiracial, 12.4% who identified as White, 11.5% who identified as Black, 11.1% who identified as Hispanic/Latinx, and 3.1% who identified as Asian [@park-lee2022]. Nine out of ten U.S. smokers who report smoking at least daily tried their first cigarette before the age of 18 [@cdc2022]. Tobacco use can cause cardiovascular disease and lung cancer which, respectively, are the leading causes of death and cancer deaths among people who identify as AI [@centersfordiseasecontrolandprevention2022]. Identifying risk and protective factors of tobacco use among AI youth is a top priority given the racial disparity in youth smoking rates and the substantial health burden caused by tobacco use in this community.
 
 Parental monitoring -- parenting behaviors including attention to where children go and activities they engage in [@dishion1998] -- may be a protective factor for decreased substance use among AI youth [@boyd-ball2014; @haruyama2023; @schick2022]. Limited research has been conducted that examines this relation with a focus on tobacco use among AI youth. The challenges that AI parents face are unique. Specifically, traditional AI parenting practices were disrupted by colonization that led to children being separated from their families by forcibly attending boarding schools or being placed with White families, which has left a lasting impact on parental self-efficacy among AI parents [@braveheart1999; @walters2011]. Several support services and interventions are available that target parental monitoring [e.g., @dishion2003], and increasing evidence of parental monitoring and tobacco use among AI youth contributes to the understanding of the potential of these programs in this population.
 
@@ -29,7 +29,7 @@ Our research questions were the following:
 1.  Do AI students report less parental monitoring compared to non-AI students? We hypothesized that AI students would report less parental monitoring compared to non-AI students.
 2.  Do AI students with higher reported parental monitoring use substances at lower rates? We hypothesized that AI students with higher reported parental monitoring do use substances at lower rates compared to non-AI students.
 
-Although people who identify as AI and AN are often lumped together and may have similar needs, the populations are not interchangeable. The focus of this study was exclusively on AI youth currently residing in the .
+Although people who identify as AI and AN are often lumped together and may have similar needs, the populations are not interchangeable. The focus of this study was exclusively on AI youth currently residing in the US.
 
 # Methods
 
@@ -47,11 +47,11 @@ Participants completed the anonymous *Our Youth, Our Future* (OYOF) online surve
 
 For our first research question, we used self-reported AI identity of 15-year-old youth (not mutually exclusive with other races) as a predictor of parental monitoring level. For our second research question, we used parental monitoring level as a predictor of having ever smoked cigarettes for 15-year-old participants.
 
-We used a subset of the data to only analyze data of 15-year-old participants, because we suspected that parental monitoring was a stronger influence on child health outcomes when the youth still lived at home and did not have a driver's license. This age is within typical age range to initiate tobacco use in this population of AI youth.
+We used a subset of the data to only analyze data of 15-year-old participants, because we suspected that parental monitoring would be a stronger influence on child health outcomes when the youth still lived at home and did not have a driver's license. This age is within the typical age range to initiate tobacco use in this population of AI youth, though they are early initiators relative to the general population of youth in the US.
 
 Parental monitoring is a constructed variable comprised of nine items from the OYOF survey regarding parental knowledge of their adolescent's activities and engagement in monitoring behaviors (e.g., *My parents ask about happenings at school*; *I need permission to be out late on weekends*). One item was reverse coded (i.e., *I keep secrets from my parents about what I do in my free time*). Parental monitoring level is the sum score of the nine items, which ranged from 9-45. In other words, higher sum scores indicate a higher level of parental monitoring for participants.
 
-The ever smoked variable was dichotomized for analysis. Participants answered one question about having ever smoked cigarettes. We chose to dichotomize this variable since participants in this subset were on the low end of the typical age range to initiate tobacco use.
+The smoking variable was dichotomized for analysis so that we could examine the differences between youth who had smoked and those who had not. Originally, participants answered one question about smoking cigarettes that was scaled from 1-5. However, because the scale values were not ordered such that higher values necessarily meant more tobacco use, we chose to group all of the students who selected "never" (a score of 1 on the original scale) together and compare them to students who indicated any level of tobacco use (scores 2-5 on the original scale). There was also relatively few students at this age who indicated ever smoking and the variability among the levels of smoking was limited, making a dichotomous variable more reasonable for this analysis.
 
 ## Analytic Approach
 
@@ -221,12 +221,6 @@ NM <- nrow(des[des$sex=="Male",])
 NF <- nrow(des[des$sex=="Female",])
 #range(desg$parent_mon_sum)
 mean_monitoring <-mean(desg$parent_mon_sum)
-
-#comment from reviewer: it would be good to present these in a nice table. consider using the functions we used in homework 10.
-
-#Comment from another reviewer:
-# I think there is a way to make this so that the Descriptive stats raw data do not display in the rendered document. 
-# I think you can place the table code into a separate chunk, and then add "include false" in the other chunk.
 ```
 
 ```{r}
@@ -234,9 +228,10 @@ destb
 ```
 
 \
-Of the 15-year-old participants in this sample (N= `r N`), `r 100*Nsmoke/N`% reported ever having smoked a cigarette. The majority of students in this sample self-identified as AI (`r 100*NAI/N`%). Most students self-reported relatively high levels of parental monitoring (M= `r mean_monitoring`) on the parental monitoring scale, which ranged in possible values from `r minPM`-`r maxPM`, with higher scores indicating more monitoring. `r 100*NM/N`% of our sample identified as male and `r 100*NF/N`% identified as female, indicating a relatively equal distribution of participants by sex.
+Of the 15-year-old participants in this sample (N= `r N`), `r round(100*Nsmoke/N, 3)`% reported ever having smoked a cigarette. The majority of students in this sample self-identified as AI (`r round(100*NAI/N, 3)`%). Most students self-reported relatively high levels of parental monitoring (M= `r round(mean_monitoring, 3)`) on the parental monitoring scale, which ranged in possible values from `r minPM`-`r maxPM`, with higher scores indicating more monitoring. `r round(100*NM/N, 3)`% of our sample identified as male and `r round(100*NF/N, 3)`% identified as female, indicating a relatively equal distribution of participants by sex.
 
 ## AI Students and Parental Monitoring
+
 ```{r}
 #| eval: false
 #| echo: false
@@ -307,7 +302,7 @@ desg_l <- desg_w %>%
 
 ```
 
-The independent two-sample t-test on parental monitoring between AI and non-AI 15-year-old participants showed that AI participants reported significantly lower parental monitoring than non-AI participants (M1= `r round(mean2,3)`, M2= `r round(mean1,3)`, `r round(t.value,3)`, df= `r df`, *p* `r sign1` `r p1`). Figure 1 showed that AI 15-year-old participants had lower average parental monitoring than non-AI 15-year-old participants.
+The independent two-sample t-test on parental monitoring between AI and non-AI 15-year-old participants showed that AI participants reported significantly lower parental monitoring than non-AI participants (M1= `r round(mean2,3)`, M2= `r round(mean1,3)`, `r round(t.value,3)`, df= `r round(df, 3)`, *p* `r sign1` `r p1`). Figure 1 showed that AI 15-year-old participants had lower average parental monitoring than non-AI 15-year-old participants.
 
 ## Parental Monitoring and Tobacco Use in AI Youth
 
@@ -363,11 +358,11 @@ figure2 + theme(
 
 ```
 
-A logistic regression model revealed that for each point increase in parental monitoring, AI youth in this sample were, on average, about `r round((1-expcoef[2])*100,3)`% less likely to have initiated smoking tobacco by age 15 (B= `r round(expcoef[2],3)`, 95%CI\[`r round(expconf[2],3)`, `r round(expconf[4],3)`\], *p*`r sign2``r p2`).
+A logistic regression model revealed that for each point increase in parental monitoring, AI youth in this sample were, on average, about `r round((1-expcoef[2])*100,3)`% less likely to have initiated smoking tobacco by age 15 (B= `r round(expcoef[2],3)`, 95%CI\[`r round(expconf[2],3)`, `r round(expconf[4],3)`\], *p*`r sign2` `r p2`).
 
 # Discussion
 
-We found that AI youth tended to self-report less parental monitoring than their non-AI peers and that increased parental monitoring was associated with lower odds of initiating tobacco use among AI youth. There are a number of reasons why AI youth may report less parental monitoring than their non-AI peers. The historical displacement and discrimination towards people who identify as AI may increase the stressors experienced by AI parents [@braveheart1999, @walters2011], limiting the amount of time that they have to dedicate to monitoring their child's activities. Our finding that youth-reported parental monitoring was associated with decreased odds of tobacco use initiation indicates that parental monitoring may serve as a protective factor against tobacco use among AI youth. Because rates of tobacco use are high among this population [@martell2016], identifying and promoting protective factors is key to mitigating the tobacco-related morbidity and mortality that has disproportionately affected this population.
+We found that AI youth tended to self-report less parental monitoring than their non-AI peers and that increased parental monitoring was associated with lower odds of initiating tobacco use among AI youth. There are a number of reasons why AI youth may report less parental monitoring than their non-AI peers. The historical displacement and discrimination towards people who identify as AI may increase the stressors experienced by AI parents [@walters2011], limiting the amount of time that they have to dedicate to monitoring their child's activities. Our finding that youth-reported parental monitoring was associated with decreased odds of tobacco use initiation indicates that parental monitoring may serve as a protective factor against tobacco use among AI youth. Because rates of tobacco use are high among this population [@martell2016], identifying and promoting protective factors is key to mitigating the tobacco-related morbidity and mortality that has disproportionately affected this population.
 
 The current analysis has the advantage of using a national dataset with a relatively large sample size. However, this study also includes limitations. Specifically, we only included 15-year-old participants in our analyses to eliminate the mediating effect of age on the relation between parental monitoring and tobacco use. Future research should include more ages in analyses. Also, because only AI youth who lived within 25 miles of a reservation were recruited to participate in this study, this analysis does not generalize to the entirety of the AI population in the U.S. Moreover, our measure of parental monitoring was reported by youth and may not fully or accurately reflect their parents' monitoring, since youth may not be aware of all the ways that their parent monitors their behavior. Because parental monitoring was summed, this analysis is not sensitive to the different impact that certain types of monitoring may have relative to others (i.e., all questions pertaining to monitoring were given equal weight and no analyses were conducted to assess which types of monitoring most accurately predict tobacco initiation). Finally, this analysis did not measure levels of tobacco use, because smoking was coded dichotomously, so we cannot make claims about the effect of parental monitoring on the frequency or quantity of tobacco use in AI youth.
 
